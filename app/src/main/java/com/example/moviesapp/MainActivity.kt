@@ -16,6 +16,7 @@ import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScree
 import com.example.moviesapp.home_feature.presentation.screens.seeAllScreen.SeeAllScreen
 import com.example.moviesapp.search_feature.presentation.screens.exploreScreen.ExploreScreen
 import com.example.moviesapp.search_feature.presentation.screens.movieSearchScreen.MovieSearchScreen
+import com.example.moviesapp.search_feature.presentation.screens.tvShowSearchScreen.TvShowSearchScreen
 import com.example.moviesapp.ui.theme.MoviesAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,7 +29,7 @@ class MainActivity : ComponentActivity() {
                modifier = Modifier.fillMaxSize() ,
                color = MaterialTheme.colorScheme.background
             ) {
-       MovieSearchScreen()
+               TvShowSearchScreen()
             }
          }
       }
