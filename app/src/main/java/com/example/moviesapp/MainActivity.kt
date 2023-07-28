@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.moviesapp.home_feature.presentation.screens.homeScreen.HomeScreen
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.HeaderMovieDetails
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.MovieDetailsScreen
+import com.example.moviesapp.home_feature.presentation.screens.seeAllScreen.SeeAllScreen
 import com.example.moviesapp.ui.theme.MoviesAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
                modifier = Modifier.fillMaxSize() ,
                color = MaterialTheme.colorScheme.background
             ) {
-           MovieDetailsScreen()
+       SeeAllScreen()
             }
          }
       }
