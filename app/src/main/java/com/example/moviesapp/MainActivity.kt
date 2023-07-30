@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.moviesapp.home_feature.presentation.screens.episodesScreen.EpisodesScreen
 import com.example.moviesapp.home_feature.presentation.screens.homeScreen.HomeScreen
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.HeaderMovieDetails
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.MovieDetailsScreen
@@ -32,7 +33,7 @@ class MainActivity : ComponentActivity() {
                modifier = Modifier.fillMaxSize() ,
                color = MaterialTheme.colorScheme.background
             ) {
-               ProfileScreen()
+               EpisodesScreen()
             }
          }
       }
