@@ -23,7 +23,9 @@ import com.example.moviesapp.search_feature.presentation.screens.exploreScreen.E
 import com.example.moviesapp.search_feature.presentation.screens.movieSearchScreen.MovieSearchScreen
 import com.example.moviesapp.search_feature.presentation.screens.tvShowSearchScreen.TvShowSearchScreen
 import com.example.moviesapp.ui.theme.MoviesAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
    override fun onCreate(savedInstanceState : Bundle?) {
       super.onCreate(savedInstanceState)
@@ -34,7 +36,7 @@ class MainActivity : ComponentActivity() {
                modifier = Modifier.fillMaxSize() ,
                color = MaterialTheme.colorScheme.background
             ) {
-               WatchHistoryScreen()
+              HomeScreen()
             }
          }
       }

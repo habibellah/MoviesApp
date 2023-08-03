@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,7 +18,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -33,19 +31,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.example.moviesapp.R
+import com.example.moviesapp.home_feature.domain.model.Movie
 
 @Composable
-fun HeaderHomeScreen(popularList : List<String>) {
+fun HeaderHomeScreen(popularMovieList : List<Movie>) {
    LazyRow (
       contentPadding = PaddingValues(16.dp) ,
       horizontalArrangement = Arrangement.spacedBy(16.dp)
            ){
-     items(popularList){
+     items(popularMovieList){
         HeaderMovieItem(
-           movieName = "movie name" ,
+           movieName = it.movieName,
            movieRate = 7 ,
            movieCategory = "adventure,action" ,
-           imageUrl = it
+           imageUrl = it.image
         )
      }
    }
@@ -93,7 +92,7 @@ fun HomeScreenBody(
 ) {
    LazyColumn {
       stickyHeader {
-         MovieStickyHeader(stickyHeaderTitle = "Tv Shows") {
+         MovieStickyHeader(stickyHeaderTitle = "Airing Today Tv Shows") {
             seeMoreClick()
          }
       }
@@ -112,7 +111,7 @@ fun HomeScreenBody(
          }
       }
       stickyHeader {
-         MovieStickyHeader(stickyHeaderTitle = "On The Air") {
+         MovieStickyHeader(stickyHeaderTitle = "On The Air Tv Shows") {
             seeMoreClick()
          }
       }
@@ -131,7 +130,7 @@ fun HomeScreenBody(
          }
       }
       stickyHeader {
-         MovieStickyHeader(stickyHeaderTitle = "Trending") {
+         MovieStickyHeader(stickyHeaderTitle = "Trending Tv Shows") {
             seeMoreClick()
          }
       }
@@ -150,7 +149,7 @@ fun HomeScreenBody(
          }
       }
       stickyHeader {
-         MovieStickyHeader(stickyHeaderTitle = "Now Streaming") {
+         MovieStickyHeader(stickyHeaderTitle = "Now Streaming Movies") {
             seeMoreClick()
          }
       }
@@ -169,7 +168,7 @@ fun HomeScreenBody(
          }
       }
       stickyHeader {
-         MovieStickyHeader(stickyHeaderTitle = "Up Coming") {
+         MovieStickyHeader(stickyHeaderTitle = "Up Coming Movies") {
             seeMoreClick()
          }
       }
@@ -188,7 +187,7 @@ fun HomeScreenBody(
          }
       }
       stickyHeader {
-         MovieStickyHeader(stickyHeaderTitle = "Top Rated") {
+         MovieStickyHeader(stickyHeaderTitle = "Top Rated Movies") {
             seeMoreClick()
          }
       }
