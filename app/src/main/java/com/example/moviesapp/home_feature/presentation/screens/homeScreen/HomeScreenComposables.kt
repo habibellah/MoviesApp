@@ -24,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,7 +44,7 @@ fun HeaderHomeScreen(popularMovieList : List<Movie>) {
      items(popularMovieList){
         HeaderMovieItem(
            movieName = it.movieName,
-           movieRate = 7 ,
+           movieRate = it.rate ,
            movieCategory = "adventure,action" ,
            imageUrl = it.image
         )
@@ -54,7 +55,7 @@ fun HeaderHomeScreen(popularMovieList : List<Movie>) {
 @Composable
 fun HeaderMovieItem(
    movieName : String ,
-   movieRate : Int ,
+   movieRate : String ,
    movieCategory : String ,
    imageUrl : String
 ) {
@@ -71,8 +72,8 @@ fun HeaderMovieItem(
       ) {
          Row {
             Text(text = movieName, fontSize = 15.sp)
-            Icon(imageVector = Icons.Default.Star , contentDescription = null)
-            Text(text = movieRate.toString(), fontSize = 15.sp)
+            Icon(imageVector = Icons.Default.Star , contentDescription = null, tint = Color.Yellow)
+            Text(text = movieRate, fontSize = 15.sp)
          }
          Text(text = movieCategory)
       }
