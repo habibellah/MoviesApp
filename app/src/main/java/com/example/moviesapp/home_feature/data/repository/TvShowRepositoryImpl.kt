@@ -2,19 +2,19 @@ package com.example.moviesapp.home_feature.data.repository
 
 import com.example.moviesapp.home_feature.data.remote.dto.MovieApi
 import com.example.moviesapp.home_feature.domain.MovieState
-import com.example.moviesapp.home_feature.domain.model.Movie
-import com.example.moviesapp.home_feature.domain.repository.MovieRepository
+import com.example.moviesapp.home_feature.domain.model.TvShow
+import com.example.moviesapp.home_feature.domain.repository.TvShowRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class MovieRepositoryImpl (private val movieApi : MovieApi): MovieRepository {
-   override suspend fun getPopularMovieList() : Flow<MovieState<List<Movie>>> {
+class TvShowRepositoryImpl  (private val movieApi : MovieApi) : TvShowRepository {
+   override suspend fun getAiringTodayTvShowList() : Flow<MovieState<List<TvShow>>> {
       return flow {
          emit(MovieState.Loading)
          try {
-            val result = movieApi.getPopularMovieList()
+            val result = movieApi.getAiringTodayTvShowList()
             if (result.isSuccessful) {
-               emit(MovieState.Success(result.body()!!.movieResults.map { it.toMovie() }))
+               emit(MovieState.Success(result.body()!!.results.map { it.toTvShow() }))
             } else {
                emit(MovieState.Error(result.message()))
             }

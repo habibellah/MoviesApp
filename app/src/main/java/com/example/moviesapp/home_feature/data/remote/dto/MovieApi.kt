@@ -11,4 +11,10 @@ interface MovieApi {
       @Query("api_key")
       apiKey : String = BuildConfig.API_KEY
    ) : Response<MovieDto>
+
+   @GET("tv/airing_today")
+  suspend fun getAiringTodayTvShowList(
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY
+  ) : Response<TvShowDto>
 }

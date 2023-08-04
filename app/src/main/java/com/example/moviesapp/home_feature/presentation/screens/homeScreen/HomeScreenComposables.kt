@@ -29,9 +29,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
 import com.example.moviesapp.R
 import com.example.moviesapp.home_feature.domain.model.Movie
+import com.example.moviesapp.home_feature.domain.model.TvShow
 
 @Composable
 fun HeaderHomeScreen(popularMovieList : List<Movie>) {
@@ -59,8 +61,8 @@ fun HeaderMovieItem(
 ) {
    Box(contentAlignment = Alignment.BottomStart) {
       CoilImage(imageUrl = imageUrl , modifier = Modifier
-         .width(250.dp)
-         .height(150.dp)
+         .width(300.dp)
+         .height(200.dp)
          .clip(RoundedCornerShape(10.dp)))
       Column(
          modifier = Modifier
@@ -69,9 +71,9 @@ fun HeaderMovieItem(
          horizontalAlignment = Alignment.Start
       ) {
          Row {
-            Text(text = movieName)
+            Text(text = movieName, fontSize = 15.sp)
             Icon(imageVector = Icons.Default.Star , contentDescription = null)
-            Text(text = movieRate.toString())
+            Text(text = movieRate.toString(), fontSize = 15.sp)
          }
          Text(text = movieCategory)
       }
@@ -81,7 +83,7 @@ fun HeaderMovieItem(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreenBody(
-   tvShowList : List<String> ,
+   airingTodayTvShowList : List<TvShow> ,
    onTheAirList : List<String> ,
    trendingList : List<String> ,
    nowStreamingList : List<String> ,
@@ -101,11 +103,12 @@ fun HomeScreenBody(
             contentPadding = PaddingValues(16.dp) ,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
          ) {
-            items(tvShowList) {
+            items(airingTodayTvShowList) {
                MovieItem(modifier = Modifier
-                  .size(100.dp)
+                  .height(150.dp)
+                  .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
-                  , imageUrl = it
+                  , imageUrl = it.image
                ) { onItemClick() }
             }
          }
@@ -122,7 +125,8 @@ fun HomeScreenBody(
          ) {
             items(onTheAirList) {
                MovieItem(modifier = Modifier
-                  .size(100.dp)
+                  .height(150.dp)
+                  .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
                   , imageUrl = it
                ) { onItemClick() }
@@ -141,7 +145,8 @@ fun HomeScreenBody(
          ) {
             items(trendingList) {
                MovieItem(modifier = Modifier
-                  .size(100.dp)
+                  .height(150.dp)
+                  .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
                   , imageUrl = it
                ) { onItemClick() }
@@ -160,7 +165,8 @@ fun HomeScreenBody(
          ) {
             items(nowStreamingList) {
                MovieItem(modifier = Modifier
-                  .size(100.dp)
+                  .height(150.dp)
+                  .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
                   , imageUrl = it
                ) { onItemClick() }
@@ -179,7 +185,8 @@ fun HomeScreenBody(
          ) {
             items(upComingList) {
                MovieItem(modifier = Modifier
-                  .size(100.dp)
+                  .height(150.dp)
+                  .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
                   , imageUrl = it
                ) { onItemClick() }
@@ -198,7 +205,8 @@ fun HomeScreenBody(
          ) {
             items(topRatedList) {
                MovieItem(modifier = Modifier
-                  .size(100.dp)
+                  .height(150.dp)
+                  .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
                   , imageUrl = it
                ) { onItemClick() }
