@@ -84,10 +84,10 @@ fun HeaderMovieItem(
 fun HomeScreenBody(
    airingTodayTvShowList : List<TvShow> ,
    onTheAirTvShowList : List<TvShow> ,
-   trendingList : List<String> ,
-   nowStreamingList : List<String> ,
-   upComingList : List<String> ,
-   topRatedList : List<String> ,
+   trendingTvShowList : List<TvShow> ,
+   nowStreamingMovieList : List<Movie> ,
+   upComingMovieList : List<Movie> ,
+   topRatedMovieList : List<Movie> ,
    seeMoreClick : () -> Unit ,
    onItemClick : () -> Unit
 ) {
@@ -142,12 +142,12 @@ fun HomeScreenBody(
             contentPadding = PaddingValues(16.dp) ,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
          ) {
-            items(trendingList) {
+            items(trendingTvShowList) {
                MovieItem(modifier = Modifier
                   .height(150.dp)
                   .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
-                  , imageUrl = it
+                  , imageUrl = it.image
                ) { onItemClick() }
             }
          }
@@ -162,12 +162,12 @@ fun HomeScreenBody(
             contentPadding = PaddingValues(16.dp) ,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
          ) {
-            items(nowStreamingList) {
+            items(nowStreamingMovieList) {
                MovieItem(modifier = Modifier
                   .height(150.dp)
                   .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
-                  , imageUrl = it
+                  , imageUrl = it.image
                ) { onItemClick() }
             }
          }
@@ -182,12 +182,12 @@ fun HomeScreenBody(
             contentPadding = PaddingValues(16.dp) ,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
          ) {
-            items(upComingList) {
+            items(upComingMovieList) {
                MovieItem(modifier = Modifier
                   .height(150.dp)
                   .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
-                  , imageUrl = it
+                  , imageUrl = it.image
                ) { onItemClick() }
             }
          }
@@ -202,12 +202,12 @@ fun HomeScreenBody(
             contentPadding = PaddingValues(16.dp) ,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
          ) {
-            items(topRatedList) {
+            items(topRatedMovieList) {
                MovieItem(modifier = Modifier
                   .height(150.dp)
                   .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
-                  , imageUrl = it
+                  , imageUrl = it.image
                ) { onItemClick() }
             }
          }

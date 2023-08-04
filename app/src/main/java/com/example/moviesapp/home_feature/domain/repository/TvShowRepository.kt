@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface TvShowRepository {
    suspend fun getTvShowListBy(category : String) : Flow<MovieState<List<TvShow>>>
+   suspend fun getTrendingTvShowList() : Flow<MovieState<List<TvShow>>>
 }

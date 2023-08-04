@@ -24,4 +24,20 @@ class TvShowRepositoryImpl  (private val movieApi : MovieApi) : TvShowRepository
          }
       }
    }
+
+   override suspend fun getTrendingTvShowList() : Flow<MovieState<List<TvShow>>> {
+      return  flow {
+         emit(MovieState.Loading)
+         try {
+            val result = movieApi.getTrendingTvShowList()
+            if (result.isSuccessful) {
+               emit(MovieState.Success(result.body()!!.results.map { it.toTvShow() }))
+            } else {
+               emit(MovieState.Error(result.message()))
+            }
+         } catch (e : Exception) {
+            emit(MovieState.Error(e.message.toString()))
+         }
+      }
+   }
 }
