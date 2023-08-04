@@ -8,11 +8,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class TvShowRepositoryImpl  (private val movieApi : MovieApi) : TvShowRepository {
-   override suspend fun getAiringTodayTvShowList() : Flow<MovieState<List<TvShow>>> {
-      return flow {
+
+   override suspend fun getTvShowListBy(category : String) : Flow<MovieState<List<TvShow>>> {
+    return  flow {
          emit(MovieState.Loading)
          try {
-            val result = movieApi.getAiringTodayTvShowList()
+            val result = movieApi.getTvShowListBy(category)
             if (result.isSuccessful) {
                emit(MovieState.Success(result.body()!!.results.map { it.toTvShow() }))
             } else {

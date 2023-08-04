@@ -8,6 +8,6 @@ import javax.inject.Inject
 
 class GetPopularMovieUseCase @Inject constructor(private val movieRepository : MovieRepository){
    suspend fun getPopularMovieList() : Flow<MovieState<List<Movie>>>{
-     return movieRepository.getPopularMovieList()
+     return movieRepository.getMovieListBy("popular")
    }
 }

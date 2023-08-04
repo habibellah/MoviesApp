@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -84,7 +83,7 @@ fun HeaderMovieItem(
 @Composable
 fun HomeScreenBody(
    airingTodayTvShowList : List<TvShow> ,
-   onTheAirList : List<String> ,
+   onTheAirTvShowList : List<TvShow> ,
    trendingList : List<String> ,
    nowStreamingList : List<String> ,
    upComingList : List<String> ,
@@ -123,12 +122,12 @@ fun HomeScreenBody(
             contentPadding = PaddingValues(16.dp) ,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
          ) {
-            items(onTheAirList) {
+            items(onTheAirTvShowList) {
                MovieItem(modifier = Modifier
                   .height(150.dp)
                   .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
-                  , imageUrl = it
+                  , imageUrl = it.image
                ) { onItemClick() }
             }
          }

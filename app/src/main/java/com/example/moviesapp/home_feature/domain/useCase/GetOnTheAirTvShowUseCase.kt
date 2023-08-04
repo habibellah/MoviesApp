@@ -6,8 +6,8 @@ import com.example.moviesapp.home_feature.domain.repository.TvShowRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetAiringTodayTvShowUseCase @Inject constructor(private val tvShowRepository : TvShowRepository){
-   suspend fun getAiringTodayTvShowList() : Flow<MovieState<List<TvShow>>> {
-      return tvShowRepository.getTvShowListBy("airing_today")
+class GetOnTheAirTvShowUseCase @Inject constructor(private val tvShowRepository : TvShowRepository){
+   suspend fun getOnTheAirTvShowList() : Flow<MovieState<List<TvShow>>> {
+      return tvShowRepository.getTvShowListBy("on_the_air")
    }
 }

@@ -5,5 +5,5 @@ import com.example.moviesapp.home_feature.domain.model.TvShow
 import kotlinx.coroutines.flow.Flow
 
 interface TvShowRepository {
-   suspend fun getAiringTodayTvShowList() : Flow<MovieState<List<TvShow>>>
+   suspend fun getTvShowListBy(category : String) : Flow<MovieState<List<TvShow>>>
 }

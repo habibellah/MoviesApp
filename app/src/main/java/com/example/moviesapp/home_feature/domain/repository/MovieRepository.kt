@@ -5,5 +5,5 @@ import com.example.moviesapp.home_feature.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
-  suspend fun getPopularMovieList() : Flow<MovieState<List<Movie>>>
+  suspend fun getMovieListBy(category : String) : Flow<MovieState<List<Movie>>>
 }
