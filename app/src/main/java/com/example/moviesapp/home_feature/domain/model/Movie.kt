@@ -4,5 +4,6 @@ data class Movie(
    val movieId : Int,
    val movieName : String,
    val image : String,
-   val rate : String
+   val rate : String,
+   val movieGene : String
 )

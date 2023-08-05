@@ -39,7 +39,8 @@ data class MovieResult(
             movieId = id,
             movieName = title,
             image = "https://image.tmdb.org/t/p/w500${posterPath}",
-            rate = voteAverage.toString()
+            rate = voteAverage.toString(),
+            movieGene = genreIds.toString()
         )
     }
 }

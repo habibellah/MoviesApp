@@ -1,8 +1,11 @@
-package com.example.moviesapp.home_feature.data.remote.dto
+package com.example.moviesapp.home_feature.data.remote
 
 import retrofit2.Response
 import retrofit2.http.GET
 import com.example.moviesapp.BuildConfig
+import com.example.moviesapp.home_feature.data.remote.dto.MovieDetailsDto
+import com.example.moviesapp.home_feature.data.remote.dto.MovieDto
+import com.example.moviesapp.home_feature.data.remote.dto.TvShowDto
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -26,4 +29,16 @@ interface MovieApi {
       @Query("api_key")
       apiKey : String = BuildConfig.API_KEY
    ) : Response<MovieDto>
+
+   @GET("movie/{id}")
+   suspend fun getMovieDetailsBy(
+      @Path(value = "id") id : Int,
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY) : Response<MovieDetailsDto>
+
+   @GET("movie/{id}/similar")
+   suspend fun getSimilarMovieBy(
+      @Path(value = "id") id : Int,
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY) : Response<MovieDto>
 }

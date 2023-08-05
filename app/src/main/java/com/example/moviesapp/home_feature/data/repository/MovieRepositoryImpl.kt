@@ -1,8 +1,9 @@
 package com.example.moviesapp.home_feature.data.repository
 
-import com.example.moviesapp.home_feature.data.remote.dto.MovieApi
+import com.example.moviesapp.home_feature.data.remote.MovieApi
 import com.example.moviesapp.home_feature.domain.MovieState
 import com.example.moviesapp.home_feature.domain.model.Movie
+import com.example.moviesapp.home_feature.domain.model.MovieDetails
 import com.example.moviesapp.home_feature.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -13,6 +14,38 @@ class MovieRepositoryImpl (private val movieApi : MovieApi): MovieRepository {
          emit(MovieState.Loading)
          try {
             val result = movieApi.getMovieListBy(category)
+            if (result.isSuccessful) {
+               emit(MovieState.Success(result.body()!!.movieResults.map { it.toMovie() }))
+            } else {
+               emit(MovieState.Error(result.message()))
+            }
+         } catch (e : Exception) {
+            emit(MovieState.Error(e.message.toString()))
+         }
+      }
+   }
+
+   override suspend fun getMovieDetailsBy(id : Int) : Flow<MovieState<MovieDetails>> {
+      return flow {
+         emit(MovieState.Loading)
+         try {
+            val result = movieApi.getMovieDetailsBy(id)
+            if (result.isSuccessful) {
+               emit(MovieState.Success(result.body()!!.toMovieDetails()))
+            } else {
+               emit(MovieState.Error(result.message()))
+            }
+         } catch (e : Exception) {
+            emit(MovieState.Error(e.message.toString()))
+         }
+      }
+   }
+
+   override suspend fun getSimilarMovieBy(id : Int) : Flow<MovieState<List<Movie>>> {
+      return flow {
+         emit(MovieState.Loading)
+         try {
+            val result = movieApi.getSimilarMovieBy(id)
             if (result.isSuccessful) {
                emit(MovieState.Success(result.body()!!.movieResults.map { it.toMovie() }))
             } else {

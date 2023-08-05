@@ -45,7 +45,7 @@ fun HeaderHomeScreen(popularMovieList : List<Movie>) {
         HeaderMovieItem(
            movieName = it.movieName,
            movieRate = it.rate ,
-           movieCategory = "adventure,action" ,
+           movieCategory = it.movieGene ,
            imageUrl = it.image
         )
      }
