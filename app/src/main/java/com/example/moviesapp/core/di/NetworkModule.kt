@@ -1,6 +1,6 @@
 package com.example.moviesapp.core.di
 
-import com.example.moviesapp.home_feature.data.remote.dto.MovieApi
+import com.example.moviesapp.home_feature.data.remote.MovieApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

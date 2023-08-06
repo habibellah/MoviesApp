@@ -27,7 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.moviesapp.home_feature.presentation.screens.homeScreen.CoilImage
-import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.CastItem
+import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.ActorItem
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.RatingBar
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.ReviewItem
 
@@ -94,7 +94,7 @@ fun TvShowDetailsBody(
          horizontalArrangement = Arrangement.spacedBy(16.dp)
       ){
          items(castList){
-            CastItem(imageUrl = it , castName = "hi")
+            ActorItem(imageUrl = it , castName = "hi")
          }
       }
       Text(text = "Seasons",
@@ -118,7 +118,7 @@ fun TvShowDetailsBody(
          textAlign = TextAlign.Start)
       LazyRow{
          items(reviewList){
-            ReviewItem()
+            ReviewItem("","","")
          }
       }
    }

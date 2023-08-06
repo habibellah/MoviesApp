@@ -9,4 +9,5 @@ data class MovieDetails(
    val genre : String,
    val rate : String,
    val overView : String,
+   val reviewCount : String
 )

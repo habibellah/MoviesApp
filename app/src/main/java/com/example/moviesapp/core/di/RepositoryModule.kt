@@ -1,6 +1,6 @@
 package com.example.moviesapp.core.di
 
-import com.example.moviesapp.home_feature.data.remote.dto.MovieApi
+import com.example.moviesapp.home_feature.data.remote.MovieApi
 import com.example.moviesapp.home_feature.data.repository.MovieRepositoryImpl
 import com.example.moviesapp.home_feature.data.repository.TvShowRepositoryImpl
 import com.example.moviesapp.home_feature.domain.repository.MovieRepository

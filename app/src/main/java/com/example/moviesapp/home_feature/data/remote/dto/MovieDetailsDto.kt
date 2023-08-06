@@ -63,9 +63,10 @@ data class MovieDetailsDto(
             image = "https://image.tmdb.org/t/p/w500${posterPath}",
             releaseDate = releaseDate ,
             duration = runtime.toString() ,
-            genre = genres.toString() ,
+            genre = genres.joinToString { it.name } ,
             rate = voteAverage.toString() ,
             overView = overview ,
+            reviewCount = voteCount.toString()
         )
     }
 }
