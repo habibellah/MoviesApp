@@ -26,27 +26,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.moviesapp.home_feature.domain.model.Season
 import com.example.moviesapp.home_feature.presentation.screens.homeScreen.CoilImage
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.ActorItem
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.RatingBar
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.ReviewItem
 
 @Composable
-fun HeaderTvShowDetails() {
+fun HeaderTvShowDetails(imageUrl : String) {
    Box(contentAlignment = Alignment.BottomCenter) {
       CoilImage(
-         imageUrl = "https://www.treehugger.com/thmb/nSp8ESJ1N6zq_bsTVL_MoSrKAqA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1273584292-cbcd5f85f4c646d58f7a7fa158dcaaeb.jpg" ,
+         imageUrl = imageUrl ,
          modifier = Modifier
             .fillMaxWidth()
             .height(450.dp)
       )
-      Column (
+      Column(
          modifier = Modifier
             .fillMaxWidth()
-            .height(450.dp),
-         verticalArrangement = Arrangement.SpaceBetween,
+            .height(450.dp) ,
+         verticalArrangement = Arrangement.SpaceBetween ,
          horizontalAlignment = Alignment.CenterHorizontally
-      ){
+      ) {
          Row(
             modifier = Modifier.fillMaxWidth() ,
             horizontalArrangement = Arrangement.SpaceBetween
@@ -67,77 +68,87 @@ fun HeaderTvShowDetails() {
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun TvShowDetailsBody(
-   castList : List<String>,
-   reviewList : List<String>
-){
-   Column (horizontalAlignment = Alignment.CenterHorizontally){
-      Text(text = "Avater: The Way of water")
-      Row {
-         Text(text ="14/12/2022 /")
-         Text(text ="3h12m")
-      }
-      Text(text ="Science Fiction,Adventure,Action")
+   seasonsList : List<Season> ,
+   reviewList : List<String> ,
+   tvShowName : String ,
+   releaseDate : String ,
+   genres : String ,
+   rate : String ,
+   voteCount : String ,
+   overView : String
+) {
+   Column(horizontalAlignment = Alignment.CenterHorizontally) {
+      Text(text = tvShowName)
+      Text(text = releaseDate)
+      Text(text = genres)
       Row {
          Icon(imageVector = Icons.Default.Star , contentDescription = null)
-         Text(text ="7.7")
-         Text(text = "(1920reviews)")
+         Text(text = rate)
+         Text(text = "(${voteCount} reviews)")
       }
-      Text(text = "Overview",
-         modifier = Modifier.fillMaxWidth(),
-         textAlign = TextAlign.Start)
-      Text(text = "the content of the overview fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
-      Text(text = "Cast",
-         modifier = Modifier.fillMaxWidth(),
-         textAlign = TextAlign.Start)
+      Text(
+         text = "Overview" ,
+         modifier = Modifier.fillMaxWidth() ,
+         textAlign = TextAlign.Start
+      )
+      Text(text = overView)
+      Text(
+         text = "Cast" ,
+         modifier = Modifier.fillMaxWidth() ,
+         textAlign = TextAlign.Start
+      )
+      Text(
+         text = "Seasons" ,
+         modifier = Modifier.fillMaxWidth() ,
+         textAlign = TextAlign.Start
+      )
       LazyRow(
          contentPadding = PaddingValues(16.dp) ,
          horizontalArrangement = Arrangement.spacedBy(16.dp)
-      ){
-         items(castList){
-            ActorItem(imageUrl = it , castName = "hi")
+      ) {
+         items(seasonsList) {
+            SeasonItem(imageUrl = it.posterPath , name = it.name , airData = it.airDate , episodeCount = it.episodeCount , overView = it.overview)
          }
       }
-      Text(text = "Seasons",
-         modifier = Modifier.fillMaxWidth(),
-         textAlign = TextAlign.Start)
-      LazyRow(
-         contentPadding = PaddingValues(16.dp) ,
-         horizontalArrangement = Arrangement.spacedBy(16.dp)
-      ){
-         items(reviewList){
-           SeasonItem(it)
-
-         }
-      }
-      Text(text = "Rate The Movie",
-         modifier = Modifier.fillMaxWidth(),
-         textAlign = TextAlign.Start)
+      Text(
+         text = "Rate The Movie" ,
+         modifier = Modifier.fillMaxWidth() ,
+         textAlign = TextAlign.Start
+      )
       RatingBar(rating = 5 , isSelectable = false)
-      Text(text = "Reviews",
-         modifier = Modifier.fillMaxWidth(),
-         textAlign = TextAlign.Start)
-      LazyRow{
-         items(reviewList){
-            ReviewItem("","","")
+      Text(
+         text = "Reviews" ,
+         modifier = Modifier.fillMaxWidth() ,
+         textAlign = TextAlign.Start
+      )
+      LazyRow {
+         items(reviewList) {
+            ReviewItem("" , "" , "")
          }
       }
    }
 }
 
 @Composable
-fun SeasonItem(imageUrl : String) {
-   Row (modifier = Modifier.fillMaxWidth()){
-      CoilImage(imageUrl = imageUrl,
+fun SeasonItem(
+   imageUrl : String , name : String , airData : String , episodeCount : Int ,
+   overView : String
+) {
+   Row(modifier = Modifier.fillMaxWidth()) {
+      CoilImage(
+         imageUrl = imageUrl ,
          modifier = Modifier
             .height(150.dp)
             .width(100.dp)
-            .clip(RoundedCornerShape(10.dp)))
-      Column (modifier = Modifier.height(200.dp), verticalArrangement = Arrangement.SpaceAround){
-         Row (horizontalArrangement = Arrangement.SpaceBetween){
-            Text(text = "Specials")
-            Text(text = "2016-5-21")
+            .clip(RoundedCornerShape(10.dp))
+      )
+      Column(modifier = Modifier.height(200.dp) , verticalArrangement = Arrangement.SpaceAround) {
+         Row(horizontalArrangement = Arrangement.SpaceBetween) {
+            Text(text = name)
+            Text(text = airData)
+            Text(text = "$episodeCount Episode")
          }
-         Text(text = "ThisSeason has no description")
+         Text(text = overView)
       }
    }
 }
