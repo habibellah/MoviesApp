@@ -24,16 +24,16 @@ private fun TvShowDetailsContent(tvShowDetailsState : State<TvShowDetailsUiState
    Box(modifier = Modifier.fillMaxSize()){
       Column (modifier = Modifier
          .verticalScroll(rememberScrollState())){
-         HeaderTvShowDetails(tvShowDetailsState.value.tvShowDetails?.image ?: "")
+         HeaderTvShowDetails(tvShowDetailsState.value.tvShowDetailsState.tvShowDetails?.image ?: "")
          TvShowDetailsBody(
-            seasonsList = tvShowDetailsState.value.tvShowDetails?.season ?: emptyList() ,
-            reviewList = listOf() ,
-            tvShowName = tvShowDetailsState.value.tvShowDetails?.tvShowName ?: "" ,
-            releaseDate = tvShowDetailsState.value.tvShowDetails?.releaseDate ?: "" ,
-            genres = tvShowDetailsState.value.tvShowDetails?.genre ?: "" ,
-            rate = tvShowDetailsState.value.tvShowDetails?.rate ?: "" ,
-            voteCount = tvShowDetailsState.value.tvShowDetails?.reviewCount ?: "" ,
-            overView = tvShowDetailsState.value.tvShowDetails?.overView ?: ""
+            seasonsList = tvShowDetailsState.value.tvShowDetailsState.tvShowDetails?.season ?: emptyList() ,
+            reviewList = tvShowDetailsState.value.tvShowReviewState.reviewList ,
+            tvShowName = tvShowDetailsState.value.tvShowDetailsState.tvShowDetails?.tvShowName ?: "" ,
+            releaseDate = tvShowDetailsState.value.tvShowDetailsState.tvShowDetails?.releaseDate ?: "" ,
+            genres = tvShowDetailsState.value.tvShowDetailsState.tvShowDetails?.genre ?: "" ,
+            rate = tvShowDetailsState.value.tvShowDetailsState.tvShowDetails?.rate ?: "" ,
+            voteCount = tvShowDetailsState.value.tvShowDetailsState.tvShowDetails?.reviewCount ?: "" ,
+            overView = tvShowDetailsState.value.tvShowDetailsState.tvShowDetails?.overView ?: ""
          )
       }
    }

@@ -16,7 +16,7 @@ data class TvShowDetailsDto(
     @SerializedName("first_air_date")
     val firstAirDate: String ,
     @SerializedName("genres")
-    val genres: List<Int> ,
+    val genres: List<Genre> ,
     @SerializedName("homepage")
     val homepage: String ,
     @SerializedName("id")
@@ -76,7 +76,7 @@ data class TvShowDetailsDto(
             tvShowId = id ,
             image = "https://image.tmdb.org/t/p/w500${posterPath}" ,
             releaseDate = firstAirDate ,
-            genre = genres.toString() ,
+            genre = genres.joinToString { it.name } ,
             rate = voteAverage.toString() ,
             overView = overview ,
             reviewCount = voteCount.toString() ,

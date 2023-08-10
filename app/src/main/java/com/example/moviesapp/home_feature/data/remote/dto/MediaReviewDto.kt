@@ -1,10 +1,9 @@
 package com.example.moviesapp.home_feature.data.remote.dto
 
 
-import com.example.moviesapp.home_feature.domain.model.Review
 import com.google.gson.annotations.SerializedName
 
-data class MovieReviewDto(
+data class MediaReviewDto(
     @SerializedName("id")
     val id: Int,
     @SerializedName("page")

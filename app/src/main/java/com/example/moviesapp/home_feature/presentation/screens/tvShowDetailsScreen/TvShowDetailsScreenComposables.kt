@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.moviesapp.home_feature.domain.model.Review
 import com.example.moviesapp.home_feature.domain.model.Season
 import com.example.moviesapp.home_feature.presentation.screens.homeScreen.CoilImage
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.ActorItem
@@ -69,7 +70,7 @@ fun HeaderTvShowDetails(imageUrl : String) {
 @Composable
 fun TvShowDetailsBody(
    seasonsList : List<Season> ,
-   reviewList : List<String> ,
+   reviewList : List<Review> ,
    tvShowName : String ,
    releaseDate : String ,
    genres : String ,
@@ -93,11 +94,6 @@ fun TvShowDetailsBody(
       )
       Text(text = overView)
       Text(
-         text = "Cast" ,
-         modifier = Modifier.fillMaxWidth() ,
-         textAlign = TextAlign.Start
-      )
-      Text(
          text = "Seasons" ,
          modifier = Modifier.fillMaxWidth() ,
          textAlign = TextAlign.Start
@@ -107,7 +103,7 @@ fun TvShowDetailsBody(
          horizontalArrangement = Arrangement.spacedBy(16.dp)
       ) {
          items(seasonsList) {
-            SeasonItem(imageUrl = it.posterPath , name = it.name , airData = it.airDate , episodeCount = it.episodeCount , overView = it.overview)
+            SeasonItem(imageUrl = it.posterPath , name = it.name , airData = it.airDate , episodeCount = it.episodeCount)
          }
       }
       Text(
@@ -123,7 +119,7 @@ fun TvShowDetailsBody(
       )
       LazyRow {
          items(reviewList) {
-            ReviewItem("" , "" , "")
+            ReviewItem(it.reviewContent , it.reviewerName , it.date)
          }
       }
    }
@@ -131,24 +127,20 @@ fun TvShowDetailsBody(
 
 @Composable
 fun SeasonItem(
-   imageUrl : String , name : String , airData : String , episodeCount : Int ,
-   overView : String
+   imageUrl : String , name : String , airData : String , episodeCount : Int
 ) {
    Row(modifier = Modifier.fillMaxWidth()) {
       CoilImage(
          imageUrl = imageUrl ,
          modifier = Modifier
-            .height(150.dp)
+            .height(200.dp)
             .width(100.dp)
             .clip(RoundedCornerShape(10.dp))
       )
       Column(modifier = Modifier.height(200.dp) , verticalArrangement = Arrangement.SpaceAround) {
-         Row(horizontalArrangement = Arrangement.SpaceBetween) {
             Text(text = name)
             Text(text = airData)
             Text(text = "$episodeCount Episode")
-         }
-         Text(text = overView)
       }
    }
 }

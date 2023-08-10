@@ -6,7 +6,7 @@ import com.example.moviesapp.BuildConfig
 import com.example.moviesapp.home_feature.data.remote.dto.MovieActorDto
 import com.example.moviesapp.home_feature.data.remote.dto.MovieDetailsDto
 import com.example.moviesapp.home_feature.data.remote.dto.MovieDto
-import com.example.moviesapp.home_feature.data.remote.dto.MovieReviewDto
+import com.example.moviesapp.home_feature.data.remote.dto.MediaReviewDto
 import com.example.moviesapp.home_feature.data.remote.dto.TvShowDetailsDto
 import com.example.moviesapp.home_feature.data.remote.dto.TvShowDto
 import retrofit2.http.Path
@@ -59,7 +59,14 @@ interface MovieApi {
       @Path(value = "id") id : Int ,
       @Query("api_key")
       apiKey : String = BuildConfig.API_KEY
-   ) : Response<MovieReviewDto>
+   ) : Response<MediaReviewDto>
+
+   @GET("tv/{id}/reviews")
+   suspend fun getTvShowReviewListBy(
+      @Path(value = "id") id : Int ,
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY
+   ) : Response<MediaReviewDto>
 
 @GET("tv/{id}")
 suspend fun getTvShowDetailsBy(

@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SeasonDto(
     @SerializedName("air_date")
-    val airDate: String,
+    val airDate: String?,
     @SerializedName("episode_count")
     val episodeCount: Int,
     @SerializedName("id")
@@ -24,7 +24,7 @@ data class SeasonDto(
 ){
     fun toSeason() : Season{
         return Season(
-            airDate = airDate ,
+            airDate = airDate ?:"" ,
             episodeCount = episodeCount ,
             id = id ,
             name = name ,
