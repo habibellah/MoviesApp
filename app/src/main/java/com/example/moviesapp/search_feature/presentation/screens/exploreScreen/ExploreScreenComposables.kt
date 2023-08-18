@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -18,7 +17,6 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -31,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.example.moviesapp.R
+import com.example.moviesapp.home_feature.domain.model.TvShow
 import com.example.moviesapp.home_feature.presentation.screens.homeScreen.CoilImage
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,7 +38,7 @@ fun HeaderExploreScreen() {
    Column (
       horizontalAlignment = Alignment.CenterHorizontally
            ){
-      TextField(value = "hi" , onValueChange = { },
+      TextField(value = "" , onValueChange = { },
       modifier = Modifier.fillMaxWidth())
       Spacer(modifier = Modifier.height(10.dp))
       Row (modifier = Modifier.fillMaxWidth(),
@@ -58,22 +57,24 @@ fun CustomSearchButton() {
          .height(100.dp)
          .width(100.dp)
          .clip(RoundedCornerShape(10.dp))
-         .background(color = colorResource(id = R.color.red))
+         .background(color = colorResource(id = R.color.black))
    ) {
       TextButton(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxSize()) {
          Column (
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
                  ){
-            Icon(imageVector = Icons.Default.Face , contentDescription = null)
-            Text(text = "Movies")
+            Icon(imageVector = Icons.Default.Face , contentDescription = null, tint = colorResource(
+               id = R.color.red
+            ))
+            Text(text = "Movies", color = colorResource(id = R.color.red))
          }
       }
    }
 }
 
 @Composable
-fun ExploreScreenBody(trendingTodayList : List<String>) {
+fun ExploreScreenBody(trendingTodayList : List<TvShow>) {
    Column {
       Text(text = "Trending Today")
       LazyVerticalGrid(columns = GridCells.Fixed(2),
@@ -83,7 +84,7 @@ fun ExploreScreenBody(trendingTodayList : List<String>) {
       ) {
          items(trendingTodayList) {
             CoilImage(
-               imageUrl = it ,
+               imageUrl = it.image ,
                modifier = Modifier
                   .height(140.dp)
                   .width(80.dp)
