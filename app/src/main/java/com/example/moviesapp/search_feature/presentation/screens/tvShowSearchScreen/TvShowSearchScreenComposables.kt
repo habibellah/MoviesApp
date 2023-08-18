@@ -16,27 +16,34 @@ import androidx.compose.material3.AssistChip
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import com.example.moviesapp.R
+import com.example.moviesapp.home_feature.domain.model.TvShow
 import com.example.moviesapp.home_feature.presentation.screens.homeScreen.CoilImage
 
 @Composable
-fun TvShowSearchScreenHeader(){
+fun TvShowSearchScreenHeader(onSearchTvShowCategoryClick : (Int?) -> Unit){
    TvShowCategoryChips{
-
+      onSearchTvShowCategoryClick(it)
    }
 }
 
 @Composable
-fun TvShowSearchScreenBody(tvShowList : List<String>){
+fun TvShowSearchScreenBody(tvShowList : List<TvShow>){
    LazyVerticalGrid(columns = GridCells.Adaptive(100.dp),
       verticalArrangement = Arrangement.spacedBy(16.dp),
       horizontalArrangement = Arrangement.spacedBy(16.dp),
       contentPadding = PaddingValues(16.dp)
    ){
       items(tvShowList){
-         CoilImage(imageUrl = it,
+         CoilImage(imageUrl = it.image,
             modifier = Modifier
                .height(100.dp)
                .width(80.dp)
@@ -56,8 +63,11 @@ fun TvShowSearchScreenBody(tvShowList : List<String>){
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TvShowCategoryChips(
-   onSearchCategoryClick : () -> Unit
+   onSearchCategoryClick : (Int?) -> Unit
 ) {
+   var chipColorState by remember{
+      mutableStateOf("all")
+   }
    Row(
       modifier = Modifier
          .fillMaxWidth()
@@ -65,7 +75,13 @@ fun TvShowCategoryChips(
       horizontalArrangement = Arrangement.spacedBy(3.dp)
    ) {
       getAllTvShowCategories().forEach {
-         AssistChip(onClick = { onSearchCategoryClick() }, label = { Text(text = it.category)})
+         AssistChip(onClick = { onSearchCategoryClick(it.id)
+            chipColorState = it.category
+         }, label = { Text(text = it.category, color = if(chipColorState == it.category){
+            colorResource(id = R.color.red)
+         }else{
+            colorResource(id = R.color.white)
+         })})
       }
    }
 }

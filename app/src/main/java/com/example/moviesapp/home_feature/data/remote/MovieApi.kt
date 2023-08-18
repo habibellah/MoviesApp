@@ -82,4 +82,12 @@ suspend fun getTvShowDetailsBy(
       @Query("with_genres")
       genres : Int?,
    ) : Response<MovieDto>
+
+   @GET("discover/tv")
+ suspend  fun getSearchedTvShowListBy(
+   @Query("api_key")
+   apiKey : String = BuildConfig.API_KEY,
+   @Query("with_genres")
+   genres : Int?,
+   ) : Response<TvShowDto>
 }

@@ -31,15 +31,12 @@ class MovieSearchViewModel @Inject constructor(
          searchMovieListByGenresUseCase.searchMovieListBy(genres).collect{ movieSearchState ->
             when(movieSearchState){
                is MovieState.Error -> {
-                  Log.i("check list search",movieSearchState.message)
                   _movieSearchUiState.update { movieSearchUiState -> movieSearchUiState.copy(error = true) }
                }
                MovieState.Loading -> {
-                  Log.i("check list search","loading")
                   _movieSearchUiState.update { movieSearchUiState -> movieSearchUiState.copy(loading = true) }
                }
                is MovieState.Success -> {
-                  Log.i("check list search",movieSearchState.data.toString())
                   _movieSearchUiState.update { movieSearchUiState -> movieSearchUiState.copy(movieList = movieSearchState.data, error = false,loading = false) }
                }
             }
