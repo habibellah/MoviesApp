@@ -13,30 +13,38 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AssistChip
+import androidx.compose.material3.ChipBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import com.example.moviesapp.R
+import com.example.moviesapp.home_feature.domain.model.Movie
 import com.example.moviesapp.home_feature.presentation.screens.homeScreen.CoilImage
 
 @Composable
-fun HeaderMovieSearchScreen(){
+fun HeaderMovieSearchScreen(onSearchCategoryClick : (Int?) -> Unit){
    MovieCategoryChips {
-
+      onSearchCategoryClick(it)
    }
 }
 
 @Composable
-fun MovieSearchScreenBody(movieList : List<String>){
+fun MovieSearchScreenBody(movieList : List<Movie>){
    LazyVerticalGrid(columns = GridCells.Adaptive(100.dp),
    verticalArrangement = Arrangement.spacedBy(16.dp),
    horizontalArrangement = Arrangement.spacedBy(16.dp),
    contentPadding = PaddingValues(16.dp)
    ){
       items(movieList){
-         CoilImage(imageUrl = it,
+         CoilImage(imageUrl = it.image,
             modifier = Modifier
                .height(100.dp)
                .width(80.dp)
@@ -49,8 +57,11 @@ fun MovieSearchScreenBody(movieList : List<String>){
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieCategoryChips(
-   onSearchCategoryClick : () -> Unit
+   onSearchCategoryClick : (Int?) -> Unit
 ) {
+   var chipColorState by remember{
+      mutableStateOf("all")
+   }
    Row(
       modifier = Modifier
          .fillMaxWidth()
@@ -58,7 +69,13 @@ fun MovieCategoryChips(
       horizontalArrangement = Arrangement.spacedBy(3.dp)
    ) {
       getAllMovieCategories().forEach {
-         AssistChip(onClick = { onSearchCategoryClick() }, label = { Text(text = it.category)})
+         AssistChip(onClick = { onSearchCategoryClick(it.id)
+                              chipColorState = it.category
+                              }, label = { Text(text = it.category, color = if(chipColorState == it.category){
+            colorResource(id = R.color.red)
+         }else{
+            colorResource(id = R.color.white)
+         })})
       }
    }
 }
