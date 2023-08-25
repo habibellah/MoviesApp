@@ -20,6 +20,7 @@ import com.example.moviesapp.profile_feature.presentation.screens.loginScreen.Lo
 import com.example.moviesapp.profile_feature.presentation.screens.profileScreen.ProfileScreen
 import com.example.moviesapp.profile_feature.presentation.screens.watchHistoryScreen.WatchHistoryScreen
 import com.example.moviesapp.search_feature.presentation.screens.exploreScreen.ExploreScreen
+import com.example.moviesapp.search_feature.presentation.screens.generalSearchScreen.GeneralSearchScreen
 import com.example.moviesapp.search_feature.presentation.screens.movieSearchScreen.MovieSearchScreen
 import com.example.moviesapp.search_feature.presentation.screens.tvShowSearchScreen.TvShowSearchScreen
 import com.example.moviesapp.ui.theme.MoviesAppTheme
@@ -36,7 +37,7 @@ class MainActivity : ComponentActivity() {
                modifier = Modifier.fillMaxSize() ,
                color = MaterialTheme.colorScheme.background
             ) {
-              TvShowSearchScreen()
+              GeneralSearchScreen()
             }
          }
       }

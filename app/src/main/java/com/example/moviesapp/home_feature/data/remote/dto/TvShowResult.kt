@@ -2,6 +2,8 @@ package com.example.moviesapp.home_feature.data.remote.dto
 
 
 import com.example.moviesapp.home_feature.domain.model.TvShow
+import com.example.moviesapp.search_feature.domain.model.MediaSearch
+import com.example.moviesapp.search_feature.domain.model.util.MediaType
 import com.google.gson.annotations.SerializedName
 
 data class TvShowResult(
@@ -36,5 +38,9 @@ data class TvShowResult(
         return TvShow(
             tvShowId = id , tvShowName = name , image = "https://image.tmdb.org/t/p/w500${posterPath}"
         )
+    }
+
+    fun toMediaSearch() : MediaSearch{
+        return MediaSearch(image = "https://image.tmdb.org/t/p/w500${posterPath}" , mediaType = MediaType.TvShow)
     }
 }

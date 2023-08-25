@@ -2,6 +2,8 @@ package com.example.moviesapp.home_feature.data.remote.dto
 
 
 import com.example.moviesapp.home_feature.domain.model.Movie
+import com.example.moviesapp.search_feature.domain.model.MediaSearch
+import com.example.moviesapp.search_feature.domain.model.util.MediaType
 import com.google.gson.annotations.SerializedName
 
 data class MovieResult(
@@ -42,5 +44,9 @@ data class MovieResult(
             rate = voteAverage.toString(),
             movieGene = genreIds.toString()
         )
+    }
+
+    fun toMediaSearch(): MediaSearch{
+        return MediaSearch(image = "https://image.tmdb.org/t/p/w500${posterPath}" , mediaType = MediaType.Movie)
     }
 }

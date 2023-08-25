@@ -9,6 +9,7 @@ import com.example.moviesapp.home_feature.data.remote.dto.MovieDto
 import com.example.moviesapp.home_feature.data.remote.dto.MediaReviewDto
 import com.example.moviesapp.home_feature.data.remote.dto.TvShowDetailsDto
 import com.example.moviesapp.home_feature.data.remote.dto.TvShowDto
+import com.example.moviesapp.search_feature.data.remote.dto.ActorDto
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -90,4 +91,28 @@ suspend fun getTvShowDetailsBy(
    @Query("with_genres")
    genres : Int?,
    ) : Response<TvShowDto>
+
+   @GET("search/movie")
+   suspend  fun searchMovieListBy(
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY,
+      @Query("query")
+      query : String,
+   ) : Response<MovieDto>
+
+   @GET("search/tv")
+   suspend  fun searchTvListBy(
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY,
+      @Query("query")
+      query : String,
+   ) : Response<TvShowDto>
+
+   @GET("search/person")
+   suspend  fun searchActorListBy(
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY,
+      @Query("query")
+      query : String,
+   ) : Response<ActorDto>
 }
