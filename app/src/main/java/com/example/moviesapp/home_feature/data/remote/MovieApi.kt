@@ -9,7 +9,13 @@ import com.example.moviesapp.home_feature.data.remote.dto.MovieDto
 import com.example.moviesapp.home_feature.data.remote.dto.MediaReviewDto
 import com.example.moviesapp.home_feature.data.remote.dto.TvShowDetailsDto
 import com.example.moviesapp.home_feature.data.remote.dto.TvShowDto
+import com.example.moviesapp.profile_feature.data.remote.dto.ProfileDTO
+import com.example.moviesapp.profile_feature.data.remote.dto.RequestToken
+import com.example.moviesapp.profile_feature.data.remote.dto.SessionIdResponse
+import com.example.moviesapp.profile_feature.data.remote.dto.UserInputsBody
 import com.example.moviesapp.search_feature.data.remote.dto.ActorDto
+import retrofit2.http.Body
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -115,4 +121,31 @@ suspend fun getTvShowDetailsBy(
       @Query("query")
       query : String,
    ) : Response<ActorDto>
+
+   @GET("authentication/token/new")
+   suspend fun getRequestToken(
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY,
+   ) : Response<RequestToken>
+
+   @POST("authentication/token/validate_with_login")
+   suspend fun checkLoginInformation(
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY,
+      @Body userInformation : UserInputsBody
+   ) : Response<RequestToken>
+
+   @GET("authentication/session/new")
+   suspend fun getSessionId(
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY,
+      @Query("request_token") tokenRequest : String
+   ) : Response<SessionIdResponse>
+
+   @GET("account")
+   suspend fun getAccountId(
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY,
+      @Query("session_id") sessionId : String
+   ) : Response<ProfileDTO>
 }

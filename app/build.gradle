@@ -96,4 +96,5 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
 
+    implementation "com.google.accompanist:accompanist-webview:0.28.0"
 }
