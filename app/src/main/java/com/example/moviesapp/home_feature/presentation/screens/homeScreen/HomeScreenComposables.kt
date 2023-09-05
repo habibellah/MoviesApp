@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
 import com.example.moviesapp.R
+import com.example.moviesapp.core.presentation.CoilImage
 import com.example.moviesapp.home_feature.domain.model.Movie
 import com.example.moviesapp.home_feature.domain.model.TvShow
 
@@ -235,18 +236,3 @@ fun MovieItem(modifier : Modifier = Modifier , imageUrl : String , onItemClick :
    CoilImage(imageUrl = imageUrl , modifier = modifier.clickable { onItemClick() })
 }
 
-@Composable
-fun CoilImage(modifier : Modifier = Modifier , imageUrl : String) {
-   SubcomposeAsyncImage(
-      model = imageUrl ,
-      contentScale = ContentScale.Crop ,
-      contentDescription = "movie image" ,
-      modifier = modifier
-   )
-}
-
-@Preview
-@Composable
-fun Preview() {
-
-}
