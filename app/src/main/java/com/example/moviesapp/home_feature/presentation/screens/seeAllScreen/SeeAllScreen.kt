@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.example.moviesapp.home_feature.presentation.screens.homeScreen.CoilImage
+import com.example.moviesapp.core.presentation.CoilImage
 
 @Composable
 fun SeeAllScreen(){

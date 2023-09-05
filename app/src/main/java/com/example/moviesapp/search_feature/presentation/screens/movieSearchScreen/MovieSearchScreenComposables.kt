@@ -27,7 +27,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.example.moviesapp.R
 import com.example.moviesapp.home_feature.domain.model.Movie
-import com.example.moviesapp.home_feature.presentation.screens.homeScreen.CoilImage
+import com.example.moviesapp.core.presentation.CoilImage
 
 @Composable
 fun HeaderMovieSearchScreen(onSearchCategoryClick : (Int?) -> Unit){

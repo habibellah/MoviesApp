@@ -34,7 +34,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.moviesapp.home_feature.presentation.screens.homeScreen.CoilImage
+import com.example.moviesapp.core.presentation.CoilImage
 
 @Composable
 fun LoginScreenHeader(){

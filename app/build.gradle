@@ -97,4 +97,5 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:2.44"
 
     implementation "com.google.accompanist:accompanist-webview:0.28.0"
+
 }

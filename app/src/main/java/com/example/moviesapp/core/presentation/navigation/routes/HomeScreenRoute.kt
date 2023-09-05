@@ -7,7 +7,7 @@ import com.example.moviesapp.home_feature.presentation.screens.homeScreen.HomeSc
 
 private const val ROUTE = "homeScreen"
 
-fun NavGraphBuilder.homeScreenRoute(navController: NavController) {
+fun NavGraphBuilder.homeScreenRoute() {
    composable(
       ROUTE
    ) {

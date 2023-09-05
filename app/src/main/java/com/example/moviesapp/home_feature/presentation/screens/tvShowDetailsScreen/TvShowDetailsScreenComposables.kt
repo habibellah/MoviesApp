@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.moviesapp.home_feature.domain.model.Review
 import com.example.moviesapp.home_feature.domain.model.Season
-import com.example.moviesapp.home_feature.presentation.screens.homeScreen.CoilImage
+import com.example.moviesapp.core.presentation.CoilImage
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.ActorItem
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.RatingBar
 import com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen.ReviewItem

@@ -32,7 +32,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.moviesapp.R
-import com.example.moviesapp.home_feature.presentation.screens.homeScreen.CoilImage
+import com.example.moviesapp.core.presentation.CoilImage
 
 @Composable
 fun ProfileScreen(){

@@ -24,7 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.example.moviesapp.R
-import com.example.moviesapp.home_feature.presentation.screens.homeScreen.CoilImage
+import com.example.moviesapp.core.presentation.CoilImage
 import com.example.moviesapp.search_feature.domain.model.MediaSearch
 
 @OptIn(ExperimentalMaterial3Api::class)
