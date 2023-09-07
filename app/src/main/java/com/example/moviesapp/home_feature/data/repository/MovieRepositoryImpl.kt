@@ -11,11 +11,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class MovieRepositoryImpl (private val movieApi : MovieApi): MovieRepository {
-   override suspend fun getMovieListBy(category : String) : Flow<MovieState<List<Movie>>> {
+   override suspend fun getMovieListBy(category : String,page : Int) : Flow<MovieState<List<Movie>>> {
       return flow {
          emit(MovieState.Loading)
          try {
-            val result = movieApi.getMovieListBy(category)
+            val result = movieApi.getMovieListBy(category, page = page)
             if (result.isSuccessful) {
                emit(MovieState.Success(result.body()!!.movieResults.map { it.toMovie() }))
             } else {
@@ -79,7 +79,7 @@ class MovieRepositoryImpl (private val movieApi : MovieApi): MovieRepository {
       return flow {
          emit(MovieState.Loading)
          try {
-            val result = movieApi.getMovieReviewListBy(id)
+            val result = movieApi.getMediaReviewListBy(id, mediaType = "movie")
             if (result.isSuccessful) {
                emit(MovieState.Success(result.body()!!.results.map { it.toReview() }))
             } else {

@@ -64,7 +64,7 @@ class TvShowRepositoryImpl  (private val movieApi : MovieApi) : TvShowRepository
       return  flow {
          emit(MovieState.Loading)
          try {
-            val result = movieApi.getTvShowReviewListBy(id)
+            val result = movieApi.getMediaReviewListBy(id, mediaType = "tv")
             if (result.isSuccessful) {
                emit(MovieState.Success(result.body()!!.results.map { it.toReview() }))
             } else {

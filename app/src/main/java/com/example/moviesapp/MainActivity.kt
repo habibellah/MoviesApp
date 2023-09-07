@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.compose.rememberNavController
 import com.example.moviesapp.core.presentation.navigation.graph.MoviesAppNavGraph
+import com.example.moviesapp.home_feature.presentation.screens.seeAllScreen.SeeAllScreen
 import com.example.moviesapp.ui.theme.MoviesAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -74,7 +75,8 @@ class MainActivity : ComponentActivity() {
                      }
                   }
                ){
-            MoviesAppNavGraph(navController =  navigationController, startDestination = "homeScreen")
+            //MoviesAppNavGraph(navController =  navigationController, startDestination = "homeScreen")
+                  SeeAllScreen()
                }
             }
          }

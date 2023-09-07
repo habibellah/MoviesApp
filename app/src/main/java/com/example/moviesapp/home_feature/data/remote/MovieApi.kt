@@ -37,7 +37,9 @@ interface MovieApi {
    suspend fun getMovieListBy(
       @Path(value = "movieCategory") movieCategory : String ,
       @Query("api_key")
-      apiKey : String = BuildConfig.API_KEY
+      apiKey : String = BuildConfig.API_KEY,
+      @Query("page")
+      page : Int
    ) : Response<MovieDto>
 
    @GET("movie/{id}")
@@ -61,19 +63,14 @@ interface MovieApi {
       apiKey : String = BuildConfig.API_KEY
    ) : Response<MovieActorDto>
 
-   @GET("movie/{id}/reviews")
-   suspend fun getMovieReviewListBy(
+   @GET("{mediaType}/{id}/reviews")
+   suspend fun getMediaReviewListBy(
       @Path(value = "id") id : Int ,
+      @Path(value = "mediaType") mediaType : String,
       @Query("api_key")
       apiKey : String = BuildConfig.API_KEY
    ) : Response<MediaReviewDto>
 
-   @GET("tv/{id}/reviews")
-   suspend fun getTvShowReviewListBy(
-      @Path(value = "id") id : Int ,
-      @Query("api_key")
-      apiKey : String = BuildConfig.API_KEY
-   ) : Response<MediaReviewDto>
 
 @GET("tv/{id}")
 suspend fun getTvShowDetailsBy(

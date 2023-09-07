@@ -10,17 +10,22 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.example.moviesapp.core.presentation.navigation.routes.navigateToSeeAllScreen
 
 @Composable
 fun HomeScreen(
-   homeViewModel : HomeViewModel = hiltViewModel()
+   homeViewModel : HomeViewModel = hiltViewModel(),
+   navController : NavController
 ) {
    val homeUiState = homeViewModel.homeUiState.collectAsState()
-   HomeScreenContent(homeUiState)
+   HomeScreenContent(homeUiState){
+      navController.navigateToSeeAllScreen()
+   }
 }
 
 @Composable
-private fun HomeScreenContent(homeUiState : State<HomeUiState>) {
+private fun HomeScreenContent(homeUiState : State<HomeUiState>,seeMoreClick:()->Unit) {
    Box(
       modifier = Modifier
          .fillMaxSize()
