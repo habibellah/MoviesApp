@@ -11,7 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.moviesapp.core.presentation.navigation.routes.navigateToMovieDetailsScreen
 import com.example.moviesapp.core.presentation.navigation.routes.navigateToSeeAllScreen
+import com.example.moviesapp.core.presentation.navigation.routes.navigateToTvShowDetailsScreen
 import com.example.moviesapp.search_feature.domain.model.util.MediaType
 
 @Composable
@@ -20,13 +22,19 @@ fun HomeScreen(
    navController : NavController
 ) {
    val homeUiState = homeViewModel.homeUiState.collectAsState()
-   HomeScreenContent(homeUiState){mediaType,mediaCategory ->
+   HomeScreenContent(homeUiState, seeMoreClick = {mediaType,mediaCategory ->
       navController.navigateToSeeAllScreen(mediaType, mediaCategory)
+   }){mediaType, mediaId ->
+      if(mediaType == MediaType.Movie){
+         navController.navigateToMovieDetailsScreen(mediaId)
+      }else{
+         navController.navigateToTvShowDetailsScreen(mediaId)
+      }
    }
 }
 
 @Composable
-private fun HomeScreenContent(homeUiState : State<HomeUiState>,seeMoreClick:(mediaType : MediaType,mediaCategory : String)->Unit) {
+private fun HomeScreenContent(homeUiState : State<HomeUiState>,seeMoreClick:(mediaType : MediaType,mediaCategory : String)->Unit, onItemClick : (mediaType : MediaType ,id : Int) -> Unit) {
    Box(
       modifier = Modifier
          .fillMaxSize()
@@ -43,7 +51,8 @@ private fun HomeScreenContent(homeUiState : State<HomeUiState>,seeMoreClick:(med
             nowStreamingMovieList = homeUiState.value.nowStreamingMovie.nowStreamingMovieList ,
             upComingMovieList = homeUiState.value.upComingMovie.upComingMovieList ,
             topRatedMovieList = homeUiState.value.topRatedMovie.topRatedMovieList ,
-            seeMoreClick = {mediaType,mediaCategory -> seeMoreClick(mediaType, mediaCategory) }) {
+            seeMoreClick = {mediaType,mediaCategory -> seeMoreClick(mediaType, mediaCategory) }) {mediaType,mediaId ->
+            onItemClick(mediaType,mediaId)
          }
       }
    }

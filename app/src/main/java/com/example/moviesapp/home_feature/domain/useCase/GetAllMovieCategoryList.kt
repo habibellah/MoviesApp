@@ -2,14 +2,13 @@ package com.example.moviesapp.home_feature.domain.useCase
 
 import com.example.moviesapp.home_feature.domain.MovieState
 import com.example.moviesapp.home_feature.domain.model.Media
-import com.example.moviesapp.home_feature.domain.model.Movie
 import com.example.moviesapp.home_feature.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GetAllMovieCategoryList @Inject constructor(private val movieRepository : MovieRepository){
-   suspend fun getAllMovieCategoryList(movieCategory : String , page : Int) : Result<Flow<MovieState<List<Media>>>> {
+   suspend fun getAllMovieListBy(movieCategory : String , page : Int) : Result<Flow<MovieState<List<Media>>>> {
       return Result.success(flow {
          movieRepository.getMovieListBy(movieCategory,page).collect{
             when(it){

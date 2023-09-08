@@ -26,7 +26,7 @@ class SeeAllViewModel @Inject constructor(
    savedStateHandle : SavedStateHandle
 ) : ViewModel() {
 
-   val args : SeeAllScreenArgs = SeeAllScreenArgs(savedStateHandle)
+  private val args : SeeAllScreenArgs = SeeAllScreenArgs(savedStateHandle)
 
    var state : MutableStateFlow<SeeAllUiState> = MutableStateFlow(SeeAllUiState())
    private val pagination = DefaultPagination<Int , List<Media>>(
@@ -78,10 +78,10 @@ private suspend fun getMediaList(page : Int) : Result<Flow<MovieState<List<Media
       if(args.mediaCategory == "trending"){
          getTrendingTvShowUseCase.getTrendingTvShowList(page)
       }else{
-         getAllTvShowCategoryList.getAllTvShowCategoryList(args.mediaCategory,page)
+         getAllTvShowCategoryList.getAllTvShowListBy(args.mediaCategory,page)
       }
    }else{
-      getAllMovieCategoryList.getAllMovieCategoryList(args.mediaCategory,page)
+      getAllMovieCategoryList.getAllMovieListBy(args.mediaCategory,page)
    }
 }
    init {

@@ -3,7 +3,6 @@ package com.example.moviesapp.home_feature.presentation.screens.movieDetailsScre
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -13,17 +12,22 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.example.moviesapp.core.presentation.navigation.routes.navigateToMovieDetailsScreen
 
 @Composable
 fun MovieDetailsScreen(
-   movieDetailsViewModel : MovieDetailsViewModel = hiltViewModel()
+   movieDetailsViewModel : MovieDetailsViewModel = hiltViewModel(),
+   navController : NavController
 ) {
    val movieDetailsUiState = movieDetailsViewModel.movieDetailsUiState.collectAsState()
-   MovieDetailsContent(movieDetailsUiState)
+   MovieDetailsContent(movieDetailsUiState){ movieId ->
+      navController.navigateToMovieDetailsScreen(movieId)
+   }
 }
 
 @Composable
-private fun MovieDetailsContent(movieDetailsUiState : State<MovieDetailsUiState>) {
+private fun MovieDetailsContent(movieDetailsUiState : State<MovieDetailsUiState>, onSimilarMovieItemClick:(movieId : Int) -> Unit) {
    Box(
       modifier = Modifier
          .fillMaxSize()
@@ -50,7 +54,9 @@ private fun MovieDetailsContent(movieDetailsUiState : State<MovieDetailsUiState>
             rate = movieDetailsUiState.value.movieDetailsState.movieDetails?.rate ?: "" ,
             reviewCount = movieDetailsUiState.value.movieDetailsState.movieDetails?.reviewCount ?: "" ,
             overView = movieDetailsUiState.value.movieDetailsState.movieDetails?.overView ?: ""
-         )
+         ){ movieId ->
+            onSimilarMovieItemClick(movieId)
+         }
       }
    }
 }

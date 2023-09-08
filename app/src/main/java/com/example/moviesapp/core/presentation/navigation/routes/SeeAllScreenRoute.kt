@@ -68,5 +68,3 @@ class SeeAllScreenArgs(savedStateHandle : SavedStateHandle){
       const val MEDIA_CATEGORY = "media_category"
    }
 }
-
-// private val args : SeeMoreMovieArgs = SeeMoreMovieArgs(savedStateHandle)

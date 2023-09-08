@@ -92,7 +92,7 @@ fun HomeScreenBody(
    upComingMovieList : List<Movie> ,
    topRatedMovieList : List<Movie> ,
    seeMoreClick : (mediaType : MediaType , mediaCategory : String) -> Unit ,
-   onItemClick : () -> Unit
+   onItemClick : (mediaType : MediaType ,id : Int) -> Unit
 ) {
    LazyColumn {
       stickyHeader {
@@ -111,7 +111,7 @@ fun HomeScreenBody(
                   .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
                   , imageUrl = it.image
-               ) { onItemClick() }
+               ) { onItemClick(MediaType.TvShow,it.tvShowId) }
             }
          }
       }
@@ -131,7 +131,7 @@ fun HomeScreenBody(
                   .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
                   , imageUrl = it.image
-               ) { onItemClick() }
+               ) { onItemClick(MediaType.TvShow,it.tvShowId) }
             }
          }
       }
@@ -151,7 +151,7 @@ fun HomeScreenBody(
                   .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
                   , imageUrl = it.image
-               ) { onItemClick() }
+               ) { onItemClick(MediaType.TvShow,it.tvShowId) }
             }
          }
       }
@@ -171,7 +171,7 @@ fun HomeScreenBody(
                   .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
                   , imageUrl = it.image
-               ) { onItemClick() }
+               ) { onItemClick(MediaType.Movie,it.movieId) }
             }
          }
       }
@@ -191,7 +191,7 @@ fun HomeScreenBody(
                   .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
                   , imageUrl = it.image
-               ) { onItemClick() }
+               ) { onItemClick(MediaType.Movie,it.movieId) }
             }
          }
       }
@@ -211,7 +211,7 @@ fun HomeScreenBody(
                   .width(100.dp)
                   .clip(RoundedCornerShape(10.dp))
                   , imageUrl = it.image
-               ) { onItemClick() }
+               ) { onItemClick(MediaType.Movie,it.movieId) }
             }
          }
       }

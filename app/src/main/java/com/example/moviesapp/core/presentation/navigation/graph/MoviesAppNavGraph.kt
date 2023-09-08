@@ -25,7 +25,7 @@ fun MoviesAppNavGraph(navController : NavHostController , startDestination : Str
       generalSearchScreenRoute()
       homeScreenRoute(navController)
       loginScreenRoute()
-      movieDetailsScreenRoute()
+      movieDetailsScreenRoute(navController)
       movieSearchScreenRoute()
       profileScreenRoute()
       seeAllScreenRoute()

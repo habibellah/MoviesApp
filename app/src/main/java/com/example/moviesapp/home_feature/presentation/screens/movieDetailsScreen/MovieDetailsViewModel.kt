@@ -1,7 +1,9 @@
 package com.example.moviesapp.home_feature.presentation.screens.movieDetailsScreen
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.moviesapp.core.presentation.navigation.routes.MovieDetailsArgs
 import com.example.moviesapp.home_feature.domain.MovieState
 import com.example.moviesapp.home_feature.domain.useCase.GetMovieActorsUseCase
 import com.example.moviesapp.home_feature.domain.useCase.GetMovieDetailsUseCase
@@ -19,17 +21,19 @@ class MovieDetailsViewModel @Inject constructor(
    private val getMovieDetailsUseCase : GetMovieDetailsUseCase,
    private val getMovieActorsUseCase : GetMovieActorsUseCase,
    private val getMovieReviewUseCase : GetMovieReviewUseCase,
-   private val getSimilarMovieUseCase : GetSimilarMovieUseCase
+   private val getSimilarMovieUseCase : GetSimilarMovieUseCase,
+   savedStateHandle : SavedStateHandle
 ) : ViewModel() {
    private val _movieDetailsUiState : MutableStateFlow<MovieDetailsUiState> =
       MutableStateFlow(MovieDetailsUiState())
    val movieDetailsUiState : StateFlow<MovieDetailsUiState> = _movieDetailsUiState
 
+   private val args = MovieDetailsArgs(savedStateHandle)
    init {
-      getMovieDetailsBy(12)
-      getSimilarMoviesBy(12)
-      getReviewListBy(12)
-      getMovieActorListBy(12)
+      getMovieDetailsBy(args.id)
+      getSimilarMoviesBy(args.id)
+      getReviewListBy(args.id)
+      getMovieActorListBy(args.id)
    }
 
    private fun getMovieActorListBy(id : Int) {

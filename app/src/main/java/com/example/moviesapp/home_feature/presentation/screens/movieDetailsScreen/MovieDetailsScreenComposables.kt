@@ -6,6 +6,7 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -93,7 +94,8 @@ fun MovieDetailsBody(
    overView : String ,
    actorList : List<Actor> ,
    similarMovieList : List<Movie> ,
-   reviewList : List<Review>
+   reviewList : List<Review>,
+   onSimilarMovieItemClick:(movieId : Int) -> Unit
 ){
    Column (horizontalAlignment = Alignment.CenterHorizontally){
       Text(text = movieName)
@@ -132,9 +134,11 @@ fun MovieDetailsBody(
        items(similarMovieList){
           CoilImage(imageUrl = it.image
              , modifier = Modifier
+                .clickable { onSimilarMovieItemClick(it.movieId) }
                 .height(200.dp)
                 .width(100.dp)
-                .clip(RoundedCornerShape(10.dp)))
+                .clip(RoundedCornerShape(10.dp))
+               )
 
        }
       }
