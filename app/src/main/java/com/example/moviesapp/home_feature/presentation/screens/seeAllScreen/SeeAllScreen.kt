@@ -43,10 +43,10 @@ private fun SeeAllScreenContent(
       verticalArrangement = Arrangement.spacedBy(16.dp),
       horizontalArrangement = Arrangement.spacedBy(16.dp)
    ){
-      items(allMoviesState.value.movieList.size){ index ->
-         val item = allMoviesState.value.movieList[index]
+      items(allMoviesState.value.mediaList.size){ index ->
+         val item = allMoviesState.value.mediaList[index]
 
-         if (index >= allMoviesState.value.movieList.size - 1 && !allMoviesState.value.endReached && !allMoviesState.value.loading) {
+         if (index >= allMoviesState.value.mediaList.size - 1 && !allMoviesState.value.endReached && !allMoviesState.value.loading) {
             seeAllViewModel.loadNextItems()
          }
          CoilImage(imageUrl = item.image,

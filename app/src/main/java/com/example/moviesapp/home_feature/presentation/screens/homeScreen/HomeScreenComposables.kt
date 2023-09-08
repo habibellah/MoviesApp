@@ -35,6 +35,7 @@ import com.example.moviesapp.R
 import com.example.moviesapp.core.presentation.CoilImage
 import com.example.moviesapp.home_feature.domain.model.Movie
 import com.example.moviesapp.home_feature.domain.model.TvShow
+import com.example.moviesapp.search_feature.domain.model.util.MediaType
 
 @Composable
 fun HeaderHomeScreen(popularMovieList : List<Movie>) {
@@ -90,13 +91,13 @@ fun HomeScreenBody(
    nowStreamingMovieList : List<Movie> ,
    upComingMovieList : List<Movie> ,
    topRatedMovieList : List<Movie> ,
-   seeMoreClick : () -> Unit ,
+   seeMoreClick : (mediaType : MediaType , mediaCategory : String) -> Unit ,
    onItemClick : () -> Unit
 ) {
    LazyColumn {
       stickyHeader {
          MovieStickyHeader(stickyHeaderTitle = "Airing Today Tv Shows") {
-            seeMoreClick()
+            seeMoreClick(MediaType.TvShow,"airing_today")
          }
       }
       item {
@@ -116,7 +117,7 @@ fun HomeScreenBody(
       }
       stickyHeader {
          MovieStickyHeader(stickyHeaderTitle = "On The Air Tv Shows") {
-            seeMoreClick()
+            seeMoreClick(MediaType.TvShow,"on_the_air")
          }
       }
       item {
@@ -136,7 +137,7 @@ fun HomeScreenBody(
       }
       stickyHeader {
          MovieStickyHeader(stickyHeaderTitle = "Trending Tv Shows") {
-            seeMoreClick()
+            seeMoreClick(MediaType.TvShow,"trending")
          }
       }
       item {
@@ -156,7 +157,7 @@ fun HomeScreenBody(
       }
       stickyHeader {
          MovieStickyHeader(stickyHeaderTitle = "Now Streaming Movies") {
-            seeMoreClick()
+            seeMoreClick(MediaType.Movie,"now_playing")
          }
       }
       item {
@@ -176,7 +177,7 @@ fun HomeScreenBody(
       }
       stickyHeader {
          MovieStickyHeader(stickyHeaderTitle = "Up Coming Movies") {
-            seeMoreClick()
+            seeMoreClick(MediaType.Movie,"upcoming")
          }
       }
       item {
@@ -196,7 +197,7 @@ fun HomeScreenBody(
       }
       stickyHeader {
          MovieStickyHeader(stickyHeaderTitle = "Top Rated Movies") {
-            seeMoreClick()
+            seeMoreClick(MediaType.Movie,"top_rated")
          }
       }
       item {

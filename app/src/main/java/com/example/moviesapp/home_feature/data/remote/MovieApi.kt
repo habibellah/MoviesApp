@@ -24,13 +24,17 @@ interface MovieApi {
    suspend fun getTvShowListBy(
       @Path(value = "tvShowCategory") tvShowCategory : String ,
       @Query("api_key")
-      apiKey : String = BuildConfig.API_KEY
+      apiKey : String = BuildConfig.API_KEY,
+      @Query("page")
+      page : Int
    ) : Response<TvShowDto>
 
    @GET("trending/tv/day")
    suspend fun getTrendingTvShowList(
       @Query("api_key")
-      apiKey : String = BuildConfig.API_KEY
+      apiKey : String = BuildConfig.API_KEY,
+      @Query("page")
+      page : Int
    ) : Response<TvShowDto>
 
    @GET("movie/{movieCategory}")

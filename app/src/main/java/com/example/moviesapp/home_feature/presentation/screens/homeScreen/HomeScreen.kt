@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.moviesapp.core.presentation.navigation.routes.navigateToSeeAllScreen
+import com.example.moviesapp.search_feature.domain.model.util.MediaType
 
 @Composable
 fun HomeScreen(
@@ -19,13 +20,13 @@ fun HomeScreen(
    navController : NavController
 ) {
    val homeUiState = homeViewModel.homeUiState.collectAsState()
-   HomeScreenContent(homeUiState){
-      navController.navigateToSeeAllScreen()
+   HomeScreenContent(homeUiState){mediaType,mediaCategory ->
+      navController.navigateToSeeAllScreen(mediaType, mediaCategory)
    }
 }
 
 @Composable
-private fun HomeScreenContent(homeUiState : State<HomeUiState>,seeMoreClick:()->Unit) {
+private fun HomeScreenContent(homeUiState : State<HomeUiState>,seeMoreClick:(mediaType : MediaType,mediaCategory : String)->Unit) {
    Box(
       modifier = Modifier
          .fillMaxSize()
@@ -42,7 +43,7 @@ private fun HomeScreenContent(homeUiState : State<HomeUiState>,seeMoreClick:()->
             nowStreamingMovieList = homeUiState.value.nowStreamingMovie.nowStreamingMovieList ,
             upComingMovieList = homeUiState.value.upComingMovie.upComingMovieList ,
             topRatedMovieList = homeUiState.value.topRatedMovie.topRatedMovieList ,
-            seeMoreClick = { /*TODO*/ }) {
+            seeMoreClick = {mediaType,mediaCategory -> seeMoreClick(mediaType, mediaCategory) }) {
          }
       }
    }

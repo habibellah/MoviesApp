@@ -12,11 +12,11 @@ import kotlinx.coroutines.flow.flow
 
 class TvShowRepositoryImpl  (private val movieApi : MovieApi) : TvShowRepository {
 
-   override suspend fun getTvShowListBy(category : String) : Flow<MovieState<List<TvShow>>> {
+   override suspend fun getTvShowListBy(category : String,page : Int) : Flow<MovieState<List<TvShow>>> {
     return  flow {
          emit(MovieState.Loading)
          try {
-            val result = movieApi.getTvShowListBy(category)
+            val result = movieApi.getTvShowListBy(category, page = page)
             if (result.isSuccessful) {
                emit(MovieState.Success(result.body()!!.results.map { it.toTvShow() }))
             } else {
@@ -28,11 +28,11 @@ class TvShowRepositoryImpl  (private val movieApi : MovieApi) : TvShowRepository
       }
    }
 
-   override suspend fun getTrendingTvShowList() : Flow<MovieState<List<TvShow>>> {
+   override suspend fun getTrendingTvShowList(page : Int) : Flow<MovieState<List<TvShow>>> {
       return  flow {
          emit(MovieState.Loading)
          try {
-            val result = movieApi.getTrendingTvShowList()
+            val result = movieApi.getTrendingTvShowList(page = page)
             if (result.isSuccessful) {
                emit(MovieState.Success(result.body()!!.results.map { it.toTvShow() }))
             } else {

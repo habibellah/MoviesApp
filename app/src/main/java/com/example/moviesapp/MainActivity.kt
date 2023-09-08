@@ -75,8 +75,7 @@ class MainActivity : ComponentActivity() {
                      }
                   }
                ){
-            //MoviesAppNavGraph(navController =  navigationController, startDestination = "homeScreen")
-                  SeeAllScreen()
+            MoviesAppNavGraph(navController =  navigationController, startDestination = "homeScreen")
                }
             }
          }
