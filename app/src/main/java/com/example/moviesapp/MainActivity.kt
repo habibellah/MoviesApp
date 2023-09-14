@@ -61,7 +61,9 @@ class MainActivity : ComponentActivity() {
                  items.forEachIndexed { index, bottomNavigationItem ->
                     NavigationBarItem(
                        selected = selectedItemIndex == index ,
-                       onClick = { selectedItemIndex = index },
+                       onClick = { selectedItemIndex = index
+                                 navigationController.navigate(bottomNavigationItem.route)
+                                 },
                        icon = {
                        Icon(
                           imageVector = if (selectedItemIndex == index) {

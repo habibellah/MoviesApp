@@ -3,7 +3,6 @@ package com.example.moviesapp.core.presentation.navigation.graph
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.example.moviesapp.core.presentation.navigation.routes.episodesScreenRoute
 import com.example.moviesapp.core.presentation.navigation.routes.exploreScreenRoute
 import com.example.moviesapp.core.presentation.navigation.routes.generalSearchScreenRoute
 import com.example.moviesapp.core.presentation.navigation.routes.homeScreenRoute
@@ -20,8 +19,7 @@ import com.example.moviesapp.core.presentation.navigation.routes.watchHistoryScr
 @Composable
 fun MoviesAppNavGraph(navController : NavHostController , startDestination : String) {
    NavHost(navController = navController, startDestination = startDestination) {
-      episodesScreenRoute()
-      exploreScreenRoute()
+      exploreScreenRoute(navController)
       generalSearchScreenRoute()
       homeScreenRoute(navController)
       loginScreenRoute()
