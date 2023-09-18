@@ -4,5 +4,6 @@ import com.example.moviesapp.search_feature.domain.model.util.MediaType
 
 class MediaSearch(
     val image : String,
-    val mediaType : MediaType
+    val mediaType : MediaType,
+    val mediaId : Int
 )

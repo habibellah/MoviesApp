@@ -47,6 +47,6 @@ data class MovieResult(
     }
 
     fun toMediaSearch(): MediaSearch{
-        return MediaSearch(image = "https://image.tmdb.org/t/p/w500${posterPath}" , mediaType = MediaType.Movie)
+        return MediaSearch(image = "https://image.tmdb.org/t/p/w500${posterPath}" , mediaType = MediaType.Movie, mediaId = id)
     }
 }

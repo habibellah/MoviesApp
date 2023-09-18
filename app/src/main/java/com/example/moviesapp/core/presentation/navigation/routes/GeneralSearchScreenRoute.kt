@@ -10,9 +10,9 @@ private const val ROUTE = "generalSearchScreen"
 fun NavController.navigateToGeneralSearchScreen(){
    navigate(ROUTE)
 }
-fun NavGraphBuilder.generalSearchScreenRoute() {
+fun NavGraphBuilder.generalSearchScreenRoute(navController : NavController) {
    composable(ROUTE
    ) {
-      GeneralSearchScreen()
+      GeneralSearchScreen(navController = navController)
    }
 }

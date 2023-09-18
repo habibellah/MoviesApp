@@ -20,7 +20,7 @@ import com.example.moviesapp.core.presentation.navigation.routes.watchHistoryScr
 fun MoviesAppNavGraph(navController : NavHostController , startDestination : String) {
    NavHost(navController = navController, startDestination = startDestination) {
       exploreScreenRoute(navController)
-      generalSearchScreenRoute()
+      generalSearchScreenRoute(navController)
       homeScreenRoute(navController)
       loginScreenRoute()
       movieDetailsScreenRoute(navController)

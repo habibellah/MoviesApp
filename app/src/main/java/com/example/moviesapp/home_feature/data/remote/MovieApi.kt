@@ -3,6 +3,8 @@ package com.example.moviesapp.home_feature.data.remote
 import retrofit2.Response
 import retrofit2.http.GET
 import com.example.moviesapp.BuildConfig
+import com.example.moviesapp.home_feature.data.remote.dto.ActorDetailsDto
+import com.example.moviesapp.home_feature.data.remote.dto.ActorMoviesDto
 import com.example.moviesapp.home_feature.data.remote.dto.MovieActorDto
 import com.example.moviesapp.home_feature.data.remote.dto.MovieDetailsDto
 import com.example.moviesapp.home_feature.data.remote.dto.MovieDto
@@ -149,4 +151,18 @@ suspend fun getTvShowDetailsBy(
       apiKey : String = BuildConfig.API_KEY,
       @Query("session_id") sessionId : String
    ) : Response<ProfileDTO>
+
+   @GET("person/{id}")
+   suspend fun getActorDetailsBy(
+      @Path("id") id : Int,
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY
+   ) : Response<ActorDetailsDto>
+
+   @GET("person/{id}/movie_credits")
+   suspend fun getActorMoviesBy(
+      @Path("id") id : Int,
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY
+   ) : Response<ActorMoviesDto>
 }

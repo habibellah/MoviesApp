@@ -41,6 +41,6 @@ data class TvShowResult(
     }
 
     fun toMediaSearch() : MediaSearch{
-        return MediaSearch(image = "https://image.tmdb.org/t/p/w500${posterPath}" , mediaType = MediaType.TvShow)
+        return MediaSearch(image = "https://image.tmdb.org/t/p/w500${posterPath}" , mediaType = MediaType.TvShow, mediaId = id)
     }
 }

@@ -2,8 +2,10 @@ package com.example.moviesapp.core.di
 
 import android.content.Context
 import com.example.moviesapp.home_feature.data.remote.MovieApi
+import com.example.moviesapp.home_feature.data.repository.ActorRepositoryImpl
 import com.example.moviesapp.home_feature.data.repository.MovieRepositoryImpl
 import com.example.moviesapp.home_feature.data.repository.TvShowRepositoryImpl
+import com.example.moviesapp.home_feature.domain.repository.ActorRepository
 import com.example.moviesapp.home_feature.domain.repository.MovieRepository
 import com.example.moviesapp.home_feature.domain.repository.TvShowRepository
 import com.example.moviesapp.profile_feature.data.local.SharedPreferences
@@ -35,6 +37,11 @@ object RepositoryModule {
    @Provides
    fun provideSearchRepository(movieApi : MovieApi) : SearchRepository{
       return SearchRepositoryImpl(movieApi)
+   }
+
+   @Provides
+   fun provideActorRepository(movieApi : MovieApi) : ActorRepository{
+      return ActorRepositoryImpl(movieApi)
    }
 
    @Provides

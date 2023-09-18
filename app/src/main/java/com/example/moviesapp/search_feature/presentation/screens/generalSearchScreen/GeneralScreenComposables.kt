@@ -1,6 +1,7 @@
 package com.example.moviesapp.search_feature.presentation.screens.generalSearchScreen
 
 import android.util.Log
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.example.moviesapp.R
 import com.example.moviesapp.core.presentation.CoilImage
 import com.example.moviesapp.search_feature.domain.model.MediaSearch
+import com.example.moviesapp.search_feature.domain.model.util.MediaType
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -58,7 +60,7 @@ fun GeneralScreenHeader(onSearchMedia : (String , String) -> Unit) {
 }
 
 @Composable
-fun GeneralSearchBody(searchList : List<MediaSearch>) {
+fun GeneralSearchBody(searchList : List<MediaSearch>,onMediaItemClick:(mediaType : MediaType,mediaId : Int)->Unit) {
    LazyVerticalGrid(
       columns = GridCells.Fixed(2) ,
       verticalArrangement = Arrangement.spacedBy(16.dp) ,
@@ -69,6 +71,7 @@ fun GeneralSearchBody(searchList : List<MediaSearch>) {
          CoilImage(
             imageUrl = it.image ,
             modifier = Modifier
+               .clickable { onMediaItemClick(it.mediaType,it.mediaId) }
                .height(140.dp)
                .width(80.dp)
                .clip(
