@@ -78,8 +78,7 @@ class MainActivity : ComponentActivity() {
                      }
                   }
                ){
-            //MoviesAppNavGraph(navController =  navigationController, startDestination = "homeScreen")
-                  ActorDetailsScreen()
+            MoviesAppNavGraph(navController =  navigationController, startDestination = "homeScreen")
                }
             }
          }

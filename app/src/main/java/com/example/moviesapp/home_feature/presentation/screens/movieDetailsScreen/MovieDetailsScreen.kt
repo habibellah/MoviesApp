@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.moviesapp.core.presentation.navigation.routes.navigateToActorDetailsScreen
 import com.example.moviesapp.core.presentation.navigation.routes.navigateToMovieDetailsScreen
 
 @Composable
@@ -21,13 +22,16 @@ fun MovieDetailsScreen(
    navController : NavController
 ) {
    val movieDetailsUiState = movieDetailsViewModel.movieDetailsUiState.collectAsState()
-   MovieDetailsContent(movieDetailsUiState){ movieId ->
+   MovieDetailsContent(movieDetailsUiState, onSimilarMovieItemClick = {
+         movieId ->
       navController.navigateToMovieDetailsScreen(movieId)
+   }){ actorId ->
+      navController.navigateToActorDetailsScreen(actorId)
    }
 }
 
 @Composable
-private fun MovieDetailsContent(movieDetailsUiState : State<MovieDetailsUiState>, onSimilarMovieItemClick:(movieId : Int) -> Unit) {
+private fun MovieDetailsContent(movieDetailsUiState : State<MovieDetailsUiState>, onSimilarMovieItemClick:(movieId : Int) -> Unit,onActorClick:(actorId : Int)->Unit) {
    Box(
       modifier = Modifier
          .fillMaxSize()
@@ -53,9 +57,12 @@ private fun MovieDetailsContent(movieDetailsUiState : State<MovieDetailsUiState>
             categories = movieDetailsUiState.value.movieDetailsState.movieDetails?.genre ?: "" ,
             rate = movieDetailsUiState.value.movieDetailsState.movieDetails?.rate ?: "" ,
             reviewCount = movieDetailsUiState.value.movieDetailsState.movieDetails?.reviewCount ?: "" ,
-            overView = movieDetailsUiState.value.movieDetailsState.movieDetails?.overView ?: ""
-         ){ movieId ->
-            onSimilarMovieItemClick(movieId)
+            overView = movieDetailsUiState.value.movieDetailsState.movieDetails?.overView ?: "",
+            onSimilarMovieItemClick = {movieId ->
+               onSimilarMovieItemClick(movieId)
+            }
+         ){ actorId ->
+            onActorClick(actorId)
          }
       }
    }

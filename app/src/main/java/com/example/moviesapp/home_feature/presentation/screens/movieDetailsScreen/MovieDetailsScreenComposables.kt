@@ -95,7 +95,8 @@ fun MovieDetailsBody(
    actorList : List<Actor> ,
    similarMovieList : List<Movie> ,
    reviewList : List<Review>,
-   onSimilarMovieItemClick:(movieId : Int) -> Unit
+   onSimilarMovieItemClick:(movieId : Int) -> Unit,
+   onActorClick:(actorId : Int) -> Unit
 ){
    Column (horizontalAlignment = Alignment.CenterHorizontally){
       Text(text = movieName)
@@ -121,7 +122,9 @@ fun MovieDetailsBody(
          horizontalArrangement = Arrangement.spacedBy(16.dp)
       ){
         items(actorList){
-           ActorItem(imageUrl = it.image , castName = it.name)
+           ActorItem(imageUrl = it.image , castName = it.name, actorId = it.id){ actorId ->
+              onActorClick(actorId)
+           }
         }
       }
       Text(text = "Similar Movies",
@@ -161,13 +164,14 @@ fun MovieDetailsBody(
 }
 
 @Composable
-fun ActorItem(imageUrl : String , castName : String){
+fun ActorItem(imageUrl : String , castName : String,actorId : Int,onActorClick : (actorId: Int) -> Unit){
    Column (verticalArrangement = Arrangement.Center,
    horizontalAlignment = Alignment.CenterHorizontally){
       CoilImage(imageUrl = imageUrl, modifier = Modifier
          .clip(RoundedCornerShape(50))
          .height(100.dp)
-         .width(100.dp))
+         .width(100.dp)
+         .clickable { onActorClick(actorId) })
       Text(text = castName)
    }
 }

@@ -1,8 +1,10 @@
 package com.example.moviesapp.home_feature.presentation.screens.actorDetailsScreen
 
 import android.util.Log
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.moviesapp.core.presentation.navigation.routes.ActorDetailsArgs
 import com.example.moviesapp.home_feature.domain.MovieState
 import com.example.moviesapp.home_feature.domain.useCase.GetActorDetailsUseCase
 import com.example.moviesapp.home_feature.domain.useCase.GetActorMoviesUseCase
@@ -16,15 +18,17 @@ import javax.inject.Inject
 @HiltViewModel
 class ActorDetailsViewModel @Inject constructor(
    private val getActorDetailsUseCase : GetActorDetailsUseCase,
-   private val getActorMoviesUseCase : GetActorMoviesUseCase
+   private val getActorMoviesUseCase : GetActorMoviesUseCase,
+   savedStateHandle : SavedStateHandle
 ) : ViewModel() {
    private val _actorUiState : MutableStateFlow<ActorDetailsUiState> =
       MutableStateFlow(ActorDetailsUiState())
    val actorUiState : StateFlow<ActorDetailsUiState> = _actorUiState
 
+  private val args = ActorDetailsArgs(savedStateHandle)
    init {
-      getActorDetails(11111)
-      getActorMovies(11111)
+      getActorDetails(args.id)
+      getActorMovies(args.id)
    }
 
    private fun getActorMovies(id : Int) {
