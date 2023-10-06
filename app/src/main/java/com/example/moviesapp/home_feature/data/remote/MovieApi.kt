@@ -165,4 +165,11 @@ suspend fun getTvShowDetailsBy(
       @Query("api_key")
       apiKey : String = BuildConfig.API_KEY
    ) : Response<ActorMoviesDto>
+
+   @GET("account")
+   suspend fun getAccountDetails(
+      @Query("api_key")
+      apiKey : String = BuildConfig.API_KEY,
+      @Query("session_id") sessionId : String
+   ) : Response<ProfileDTO>
 }

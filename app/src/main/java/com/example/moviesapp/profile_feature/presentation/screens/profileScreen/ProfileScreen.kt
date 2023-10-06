@@ -24,6 +24,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,18 +34,32 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.moviesapp.R
 import com.example.moviesapp.core.presentation.CoilImage
+import com.example.moviesapp.core.presentation.navigation.routes.navigateToLoginScreen
 
 @Composable
-fun ProfileScreen(){
-   ProfileScreenContent()
+fun ProfileScreen(
+   profileViewModel : ProfileViewModel = hiltViewModel(),
+   navController : NavController
+){
+   val profileState = profileViewModel.profileUiState.collectAsState()
+   SideEffect {
+      if(profileViewModel.getUserName() == null){
+         navController.navigateToLoginScreen()
+      }else{
+         profileViewModel.getAccountDetails()
+      }
+   }
+   ProfileScreenContent(profileState)
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ProfileScreenContent() {
+private fun ProfileScreenContent(profileState : State<ProfileScreenUiState>) {
    Scaffold(
       topBar = {
          TopAppBar(
@@ -56,15 +73,22 @@ private fun ProfileScreenContent() {
          verticalArrangement = Arrangement.Center,
          horizontalAlignment = Alignment.CenterHorizontally
       ) {
-         CoilImage(
-            imageUrl = "https://www.treehugger.com/thmb/nSp8ESJ1N6zq_bsTVL_MoSrKAqA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1273584292-cbcd5f85f4c646d58f7a7fa158dcaaeb.jpg",
-            modifier = Modifier.size(150.dp)
-               .clip(RoundedCornerShape(50))
-         )
+            profileState.value.profile.avatar?.let { it1 ->
+               CoilImage(
+                  imageUrl = it1 ,
+                  modifier = Modifier
+                     .size(150.dp)
+                     .clip(RoundedCornerShape(50))
+               )
+            }
+
          Spacer(modifier = Modifier.height(5.dp))
-         Text(
-            text = "name", fontSize = 25.sp, fontWeight = FontWeight.Bold
-         )
+         profileState.value.profile.userName?.let { it1 ->
+            Text(
+               text = it1 , fontSize = 25.sp, fontWeight = FontWeight.Bold
+            )
+         }
+
          Spacer(
             modifier = Modifier
                .fillMaxWidth()

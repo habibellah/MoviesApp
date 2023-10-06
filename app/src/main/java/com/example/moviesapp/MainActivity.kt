@@ -46,7 +46,6 @@ class MainActivity : ComponentActivity() {
            val items  = listOf(
               BottomNavigationItem(title = "Home" , route = "homeScreen" , selectedIcon = Icons.Filled.Home , unselectedIcon =Icons.Outlined.Home),
               BottomNavigationItem(title = "Search" , route = "exploreScreen" , selectedIcon = Icons.Filled.Search , unselectedIcon =Icons.Outlined.Search),
-              BottomNavigationItem(title = "Favorite" , route = "favoriteScreen" , selectedIcon = Icons.Filled.Favorite , unselectedIcon =Icons.Outlined.Favorite),
               BottomNavigationItem(title = "Profile" , route = "profileScreen" , selectedIcon = Icons.Filled.Person , unselectedIcon =Icons.Outlined.Person),
            )
             var selectedItemIndex by remember{

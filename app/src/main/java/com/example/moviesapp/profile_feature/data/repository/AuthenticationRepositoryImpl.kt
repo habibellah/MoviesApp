@@ -5,12 +5,15 @@ import com.example.moviesapp.home_feature.domain.MovieState
 import com.example.moviesapp.profile_feature.data.local.SharedPreferences
 import com.example.moviesapp.profile_feature.data.remote.dto.UserInputsBody
 import com.example.moviesapp.profile_feature.domain.model.LoginState
+import com.example.moviesapp.profile_feature.domain.model.Profile
 import com.example.moviesapp.profile_feature.domain.repository.AuthenticationRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class AuthenticationRepositoryImpl @Inject constructor(private val movieApi : MovieApi,private val sharedPreferences : SharedPreferences): AuthenticationRepository {
+class AuthenticationRepositoryImpl @Inject constructor(
+   private val movieApi : MovieApi,
+   private val sharedPreferences : SharedPreferences): AuthenticationRepository {
 
    override suspend fun logIn(
       userName : String ,
@@ -72,6 +75,22 @@ class AuthenticationRepositoryImpl @Inject constructor(private val movieApi : Mo
          LoginState.SuccessLogin
       } else {
          LoginState.FailedLogin
+      }
+   }
+
+   override fun getAccountDetails() : Flow<MovieState<Profile>> {
+      return flow {
+         emit(MovieState.Loading)
+         try {
+            val result = movieApi.getAccountDetails(sessionId = sharedPreferences.getSessionId()!!)
+            if (result.isSuccessful) {
+               emit(MovieState.Success(result.body()!!.toProfile()))
+            } else {
+               emit(MovieState.Error(result.message()))
+            }
+         } catch (e : Exception) {
+            emit(MovieState.Error(e.message.toString()))
+         }
       }
    }
 }

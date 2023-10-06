@@ -18,7 +18,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import habibellah.ayata.movies.core.data.dataSource.local.SharedPrefrencesUserData
+import com.example.moviesapp.profile_feature.data.local.SharedPrefrencesUserData
 
 @Module
 @InstallIn(SingletonComponent::class)

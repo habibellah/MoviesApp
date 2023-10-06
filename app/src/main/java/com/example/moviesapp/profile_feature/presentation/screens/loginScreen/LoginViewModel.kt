@@ -32,6 +32,8 @@ class LoginViewModel @Inject constructor(
                is MovieState.Success -> {
                   _loginState.update { loginUiState -> loginUiState.copy(error = false, loading = false, loginState = loginStateResult.data!!) }
                }
+
+               else -> {}
             }
          }
       }

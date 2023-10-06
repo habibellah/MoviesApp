@@ -1,8 +1,7 @@
-package habibellah.ayata.movies.core.data.dataSource.local
+package com.example.moviesapp.profile_feature.data.local
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.moviesapp.profile_feature.data.local.SharedPreferencesConstants
 
 class SharedPrefrencesUserData(private val context : Context) :
    com.example.moviesapp.profile_feature.data.local.SharedPreferences {

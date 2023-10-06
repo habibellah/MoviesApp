@@ -10,13 +10,19 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.example.moviesapp.core.presentation.navigation.routes.navigateToProfileScreen
+import com.example.moviesapp.profile_feature.domain.model.LoginState
 
 @Composable
 fun LoginScreen(
-   loginViewModel : LoginViewModel = hiltViewModel()
+   loginViewModel : LoginViewModel = hiltViewModel(),
+   navController : NavController
 ){
    val loginUiState = loginViewModel.loginState.collectAsState()
-   LoginScreenContent(loginUiState){userName, password ->
+   LoginScreenContent(loginUiState, successLogin = {
+         navController.navigateToProfileScreen()
+   }){userName, password ->
            loginViewModel.onLoginClick(userName, password)
    }
 }
@@ -24,8 +30,12 @@ fun LoginScreen(
 @Composable
 private fun LoginScreenContent(
    loginUiState : State<LoginUiState> ,
+   successLogin:()->Unit,
    logInClick : (userName : String , password : String) -> Unit
 ) {
+   if(loginUiState.value.loginState == LoginState.SuccessLogin){
+      successLogin()
+   }
    Box(modifier = Modifier.fillMaxSize()){
       Column(
          modifier = Modifier

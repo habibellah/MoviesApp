@@ -1,5 +1,6 @@
 package com.example.moviesapp.profile_feature.data.remote.dto
 
+import com.example.moviesapp.profile_feature.domain.model.Profile
 import com.google.gson.annotations.SerializedName
 
 data class ProfileDTO(
@@ -17,4 +18,11 @@ data class ProfileDTO(
    val name: String?,
    @SerializedName("username")
    val username: String?
-)
+){
+   fun toProfile() : Profile{
+      return Profile(
+         userName = username,
+         avatar = "https://image.tmdb.org/t/p/w500${avatar?.tmdb?.avatarPath}"
+      )
+   }
+}
